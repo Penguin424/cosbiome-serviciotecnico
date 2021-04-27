@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "antd/dist/antd.css";
 
-function App() {
+import Login from "./pages/Login";
+import MenuPrincipal from "./pages/MenuPrincipal";
+import MenuRouterMain from "./pages/MenuRouterMain";
+import CrearLotes from "./pages/Lotes/CrearLotes";
+import Lotes from "./pages/Lotes";
+import DetalleLote from "./pages/Lotes/DetalleLote";
+import CreacionClientes from "./pages/Clientes/CreacionClientes";
+import Clientes from "./pages/Clientes";
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path="/" component={Login} />
+        <MenuRouterMain>
+          <Route exact path="/menu" component={MenuPrincipal} />
+          <Route exact path="/lotes/crear" component={CrearLotes} />
+          <Route exact path="/lotes" component={Lotes} />
+          <Route exact path="/lotes/detalle/:id" component={DetalleLote} />
+          <Route exact path="/clientes/creacion" component={CreacionClientes} />
+          <Route exact path="/clientes" component={Clientes} />
+        </MenuRouterMain>
+      </Switch>
+    </Router>
   );
-}
+};
 
 export default App;
