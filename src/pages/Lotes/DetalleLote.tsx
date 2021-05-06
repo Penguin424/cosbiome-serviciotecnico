@@ -75,8 +75,8 @@ const DetalleLote = () => {
         SELECT
           MaqNombre,
           COUNT(*) AS 'TOTAL'
-        FROM MAQUINAS
-        INNER JOIN LOTES ON LoteId = MaquinaLote
+        FROM maquinas
+        INNER JOIN lotes ON LoteId = MaquinaLote
         INNER JOIN maquinasnombres ON MaquinaNombre = MaqId
         WHERE LoteId = ${params.id}
         GROUP BY MaqNombre;

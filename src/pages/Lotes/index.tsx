@@ -20,17 +20,17 @@ const Lotes = () => {
 
   const handleGetLotes = async () => {
     const result: ILotesReporteGeneral[] = await (await conn).query(`
-        SELECT 
-            LoteId,
-            LoteFecha,
-            COUNT(MaquinaLote) AS 'LoteTotalMaquinas',
-            COUNT(CASE WHEN MaquinaCliente != 1 then 1 else null end) AS 'LoteVendidas',
-            COUNT(CASE WHEN MaquinaCliente = 1 then 1 else null end) AS 'LoteNoVendidas',
-            COUNT(CASE WHEN MaquinaReparacion IS true then 1 else null end) AS 'LoteReparacion',
-            COUNT(CASE WHEN MaquinaReparacion IS NOT true AND MaquinaLote IS NOT NULL then 1 else null end) AS 'LoteNoReparacion'
-        FROM LOTES
-        LEFT JOIN MAQUINAS ON LoteId = MaquinaLote
-        GROUP BY LoteId;
+      SELECT 
+          LoteId,
+          LoteFecha,
+          COUNT(MaquinaLote) AS 'LoteTotalMaquinas',
+          COUNT(CASE WHEN MaquinaCliente != 1 then 1 else null end) AS 'LoteVendidas',
+          COUNT(CASE WHEN MaquinaCliente = 1 then 1 else null end) AS 'LoteNoVendidas',
+          COUNT(CASE WHEN MaquinaReparacion IS true then 1 else null end) AS 'LoteReparacion',
+          COUNT(CASE WHEN MaquinaReparacion IS NOT true AND MaquinaLote IS NOT NULL then 1 else null end) AS 'LoteNoReparacion'
+      FROM lotes
+      LEFT JOIN maquinas ON LoteId = MaquinaLote
+      GROUP BY LoteId;
     `);
 
     console.log(result);

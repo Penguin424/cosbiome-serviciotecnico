@@ -29,8 +29,8 @@ const Clientes = () => {
         ClienteId,
         ClienteCreacion,
         COUNT( CASE WHEN MaquinaCliente IS NOT NULL THEN 1 ELSE NULL END) AS 'ClienteTotalMaquinas'
-      FROM  CLIENTES
-      LEFT JOIN MAQUINAS ON ClienteId = MaquinaCliente
+      FROM  clientes
+      LEFT JOIN maquinas ON ClienteId = MaquinaCliente
       GROUP BY ClienteNombre
       ORDER BY ClienteId;
     `);
@@ -84,11 +84,11 @@ const Clientes = () => {
         <Space size="middle">
           <Button
             onClick={() => {
-              history.push("/lotes/detalle/" + record.ClienteId);
+              history.push("/clientes/detalle/" + record.ClienteId);
             }}
             type="primary"
           >
-            DETALLE DE LOTE
+            DETALLE DEL CLIENTE
           </Button>
         </Space>
       ),

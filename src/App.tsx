@@ -10,6 +10,12 @@ import Lotes from "./pages/Lotes";
 import DetalleLote from "./pages/Lotes/DetalleLote";
 import CreacionClientes from "./pages/Clientes/CreacionClientes";
 import Clientes from "./pages/Clientes";
+import DetalleCliente from "./pages/Clientes/DetalleCliente";
+import Maquinas from "./pages/Maquinas";
+import Reparacion from "./pages/Maquinas/Reparacion";
+import ModelosAdd from "./pages/Maquinas/ModelosAdd";
+import AsignarCliente from "./pages/Maquinas/AsignarCliente";
+import Reparaciones from "./pages/ReparacionesMan/Reparaciones";
 
 const App = () => {
   return (
@@ -23,6 +29,20 @@ const App = () => {
           <Route exact path="/lotes/detalle/:id" component={DetalleLote} />
           <Route exact path="/clientes/creacion" component={CreacionClientes} />
           <Route exact path="/clientes" component={Clientes} />
+          <Route
+            exact
+            path="/clientes/detalle/:id"
+            component={DetalleCliente}
+          />
+          <Route exact path="/maquinas" component={Maquinas} />
+          <Route exact path="/maquinas/reparacion" component={Reparacion} />
+          <Route exact path="/maquinas/modelos" component={ModelosAdd} />
+          <Route exact path="/maquinas/asignar" component={AsignarCliente} />
+          <Route
+            exact
+            path="/reparaciones/pendientes"
+            component={Reparaciones}
+          />
         </MenuRouterMain>
       </Switch>
     </Router>

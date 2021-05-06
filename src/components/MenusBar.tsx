@@ -11,9 +11,12 @@ import {
 } from "@ant-design/icons";
 import {
   PostAddOutlined,
-  LocalDrinkOutlined,
   ListAltOutlined,
   People,
+  TabletAndroid,
+  Build,
+  AssignmentInd,
+  Healing,
 } from "@material-ui/icons/";
 import SubMenu from "antd/lib/menu/SubMenu";
 import { Link } from "react-router-dom";
@@ -55,7 +58,7 @@ const MenusBar = ({ setCollapsed, collapsed, online }: any) => {
       <SubMenu
         key="sub1"
         icon={<DatabaseOutlined style={{ fontSize: 17 }} />}
-        title="INVENTARIOS"
+        title="FUNCIONALIDADES"
       >
         <SubMenu
           key="sub1materia"
@@ -81,38 +84,51 @@ const MenusBar = ({ setCollapsed, collapsed, online }: any) => {
         </SubMenu>
         <SubMenu
           key="sub1envases"
-          icon={<LocalDrinkOutlined style={{ fontSize: 19 }} />}
+          icon={<TabletAndroid style={{ fontSize: 19 }} />}
           style={{ fontSize: 12 }}
-          title="ENVASES"
+          title="MAQUINAS"
         >
           <Menu.Item
             style={{ fontSize: 14 }}
             key="sub1envases1"
-            icon={<PostAddOutlined style={{ fontSize: 20 }} />}
+            icon={<Build style={{ fontSize: 20 }} />}
           >
-            <Link to="/envases/creacion">CREAR</Link>
+            <Link to="/maquinas/reparacion">REPARACION</Link>
           </Menu.Item>
-
           <Menu.Item
             style={{ fontSize: 14 }}
             key="sub1envases2"
             icon={<ListAltOutlined style={{ fontSize: 20 }} />}
           >
-            <Link to="/envases/inventario">INVENTARIO</Link>
+            <Link to="/maquinas">LISTADO GENERAL</Link>
+          </Menu.Item>
+          <Menu.Item
+            style={{ fontSize: 14 }}
+            key="sub1envases3"
+            icon={<PostAddOutlined style={{ fontSize: 20 }} />}
+          >
+            <Link to="/maquinas/modelos">AGREGAR MODELOS</Link>
+          </Menu.Item>
+          <Menu.Item
+            style={{ fontSize: 14 }}
+            key="sub1envases4"
+            icon={<AssignmentInd style={{ fontSize: 20 }} />}
+          >
+            <Link to="/maquinas/asignar">ASIGNAR MAQUINA A CLIENTE</Link>
           </Menu.Item>
         </SubMenu>
         <SubMenu
           key="sub1productos"
-          icon={<RestOutlined style={{ fontSize: 19 }} />}
+          icon={<Healing style={{ fontSize: 22 }} />}
           style={{ fontSize: 12 }}
-          title="PRODUCTOS"
+          title="REPERACIONES/MANTENIMIENTOS"
         >
           <Menu.Item
             style={{ fontSize: 14 }}
             key="sub1productos1"
-            icon={<PostAddOutlined style={{ fontSize: 20 }} />}
+            icon={<Build style={{ fontSize: 20 }} />}
           >
-            <Link to="/productos/creacion">CREAR</Link>
+            <Link to="/reparaciones/pendientes">REPARACIONES PENDIENTES</Link>
           </Menu.Item>
 
           <Menu.Item
