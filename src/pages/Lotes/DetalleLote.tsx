@@ -175,7 +175,7 @@ const DetalleLote = () => {
         <Space size="middle">
           <Button
             onClick={() => {
-              history.push("/lotes/detalle/" + record.LoteId);
+              history.push("/maquinas/detalle/" + record.MaquinaId);
             }}
             type="primary"
           >

@@ -5,8 +5,6 @@ import {
   DesktopOutlined,
   DatabaseOutlined,
   BarChartOutlined,
-  DollarCircleOutlined,
-  RestOutlined,
   ShoppingCartOutlined,
 } from "@ant-design/icons";
 import {
@@ -38,7 +36,7 @@ const MenusBar = ({ setCollapsed, collapsed, online }: any) => {
       <SubMenu
         key="sub0"
         icon={<ShoppingCartOutlined style={{ fontSize: 17 }} />}
-        title="INVENTARIOS"
+        title="LOTES"
       >
         <Menu.Item
           style={{ fontSize: 14 }}
@@ -131,22 +129,22 @@ const MenusBar = ({ setCollapsed, collapsed, online }: any) => {
             <Link to="/reparaciones/pendientes">REPARACIONES PENDIENTES</Link>
           </Menu.Item>
 
-          <Menu.Item
+          {/* <Menu.Item
             style={{ fontSize: 14 }}
             key="sub1productos2"
             icon={<ListAltOutlined style={{ fontSize: 20 }} />}
           >
             <Link to="/productos/inventario">INVENTARIO</Link>
-          </Menu.Item>
+          </Menu.Item> */}
         </SubMenu>
 
-        <Menu.Item
+        {/* <Menu.Item
           style={{ fontSize: 14 }}
           key="sb13"
           icon={<DollarCircleOutlined style={{ fontSize: 14 }} />}
         >
           <Link to="/ProductoTerminado">PRODUCTO TERMINADO</Link>
-        </Menu.Item>
+        </Menu.Item> */}
       </SubMenu>
 
       <Menu.Item

@@ -5,6 +5,7 @@ import moment from "moment";
 import { useEffect, useState } from "react";
 import useFiltersTables from "../../hooks/useFiltersTables";
 import { connection as conn } from "../../lib/DataBase";
+import { useHistory } from "react-router-dom";
 
 interface IReparacionDB {
   ClienteNombre: string;
@@ -20,6 +21,7 @@ const Reparaciones = () => {
   const [reparaciones, setReparaciones] = useState<IReparacionDB[]>([]);
 
   const dropMenuFilter = useFiltersTables();
+  const history = useHistory();
 
   useEffect(() => {
     handleGetReparaciones();
@@ -38,7 +40,8 @@ const Reparaciones = () => {
       from reparaciones
       inner join clientes on ClienteId = ReparacionCliente
       inner join maquinas on MaquinaId = ReparacionMaquina
-      inner join maquinasnombres on MaquinaNombre = MaqId;
+      inner join maquinasnombres on MaquinaNombre = MaqId
+      where ReparacionCompletada = false;
     `);
 
     setReparaciones(reparacionesDB);
@@ -82,7 +85,12 @@ const Reparaciones = () => {
       key: "action",
       render: (text: any, record) => (
         <Space size="middle">
-          <Button onClick={() => {}} type="primary">
+          <Button
+            onClick={() => {
+              history.push(`/reparaciones/detalle/${record.ReparacionId}`);
+            }}
+            type="primary"
+          >
             DETALLE DE REPARACION
           </Button>
         </Space>

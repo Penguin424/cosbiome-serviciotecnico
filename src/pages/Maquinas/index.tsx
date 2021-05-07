@@ -2,6 +2,7 @@ import { Button, Space, Table } from "antd";
 import { ColumnsType } from "antd/lib/table";
 import Title from "antd/lib/typography/Title";
 import { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import useFiltersTables from "../../hooks/useFiltersTables";
 import { connection as conn } from "../../lib/DataBase";
 
@@ -18,6 +19,7 @@ const Maquinas = () => {
   const [maquinas, setMaquinas] = useState<IMaquinasDetalleCLiente[]>([]);
 
   const dropMenuFilter = useFiltersTables();
+  const history = useHistory();
 
   useEffect(() => {
     handleGetMaquinas();
@@ -84,7 +86,12 @@ const Maquinas = () => {
       key: "action",
       render: (text: any, record) => (
         <Space size="middle">
-          <Button onClick={() => {}} type="primary">
+          <Button
+            onClick={() => {
+              history.push("/maquinas/detalle/" + record.MaquinaId);
+            }}
+            type="primary"
+          >
             DETALLE DE LA MAQUINA
           </Button>
         </Space>

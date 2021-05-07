@@ -16,6 +16,8 @@ import Reparacion from "./pages/Maquinas/Reparacion";
 import ModelosAdd from "./pages/Maquinas/ModelosAdd";
 import AsignarCliente from "./pages/Maquinas/AsignarCliente";
 import Reparaciones from "./pages/ReparacionesMan/Reparaciones";
+import DetalleReparacion from "./pages/ReparacionesMan/DetalleReparacion";
+import DetalleMaquina from "./pages/Maquinas/DetalleMaquina";
 
 const App = () => {
   return (
@@ -40,8 +42,18 @@ const App = () => {
           <Route exact path="/maquinas/asignar" component={AsignarCliente} />
           <Route
             exact
+            path="/maquinas/detalle/:id"
+            component={DetalleMaquina}
+          />
+          <Route
+            exact
             path="/reparaciones/pendientes"
             component={Reparaciones}
+          />
+          <Route
+            exact
+            path="/reparaciones/detalle/:id"
+            component={DetalleReparacion}
           />
         </MenuRouterMain>
       </Switch>
