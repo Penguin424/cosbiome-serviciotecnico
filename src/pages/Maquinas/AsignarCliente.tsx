@@ -3,6 +3,7 @@ import Title from "antd/lib/typography/Title";
 import { connection as conn } from "../../lib/DataBase";
 import { remote } from "electron";
 import { useEffect, useState } from "react";
+import moment from "moment";
 
 const { Option } = Select;
 interface IAsignacionMaquina {
@@ -33,7 +34,9 @@ const AsignarCliente = () => {
   const onFinish = async (values: IAsignacionMaquina) => {
     try {
       await (await conn).query(`
-        UPDATE maquinas SET MaquinaCliente = ${values.cliente}
+        UPDATE maquinas SET 
+          MaquinaCliente = ${values.cliente},
+          MaquinaEntrega = '${moment().format("YY-MM-DD")}'
         WHERE MaquinaId = ${values.maquina};
       `);
 

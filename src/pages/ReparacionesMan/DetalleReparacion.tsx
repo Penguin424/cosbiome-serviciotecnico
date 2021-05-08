@@ -1,4 +1,4 @@
-import { Button, Form, Input, List } from "antd";
+import { Button, Form, Input, List, Space } from "antd";
 import Title from "antd/lib/typography/Title";
 import moment from "moment";
 import { useEffect, useState } from "react";
@@ -65,7 +65,7 @@ const DetalleReparacion = () => {
     setReparacion(reparacionDB[0]);
   };
 
-  const onFinish = async (values: { total: string }) => {
+  const onFinish = async (values: { total: string; fecha: string }) => {
     try {
       await (await conn).query(`
         UPDATE reparaciones
@@ -93,6 +93,21 @@ const DetalleReparacion = () => {
         title: "ERROR AL COMPLETAR LA REPACION",
         body: "ERROR DE COMPLETADO EN REPARACION COMUNICA A SISTEMAS",
       }).show();
+      console.log(error);
+    }
+  };
+
+  const handleUpdateDateTotal = async () => {
+    try {
+      const data: { total: string; fecha: string } = form.getFieldsValue();
+
+      await (await conn).query(`
+        UPDATE reparaciones
+        SET
+          ReparacionEntrega = '${moment(data.fecha).format("YY-MM-DD")}'
+        WHERE ReparacionId = ${params.id};
+      `);
+    } catch (error) {
       console.log(error);
     }
   };
@@ -131,6 +146,10 @@ const DetalleReparacion = () => {
         <div className="col-md-12">
           <Form
             name="reparacionterminada"
+            initialValues={{
+              fecha: moment().format("YYYY-MM-DD"),
+              total: 20,
+            }}
             layout="vertical"
             form={form}
             onFinish={onFinish}
@@ -148,12 +167,35 @@ const DetalleReparacion = () => {
             >
               <Input type="number" />
             </Form.Item>
-
-            <Form.Item>
-              <Button type="primary" htmlType="submit">
-                COMPLETAR REPARACION
-              </Button>
+            <Form.Item
+              label="FECHA DE ENTREGA DE LA MAQUINA"
+              name="fecha"
+              rules={[
+                {
+                  required: true,
+                  message:
+                    "Es necesario agregar el total a cobrar de la reparacion",
+                },
+              ]}
+            >
+              <Input type="date" />
             </Form.Item>
+            <Space>
+              <Form.Item>
+                <Button type="primary" htmlType="submit">
+                  COMPLETAR REPARACION
+                </Button>
+              </Form.Item>
+              <Form.Item>
+                <Button
+                  onClick={() => handleUpdateDateTotal()}
+                  type="default"
+                  htmlType="button"
+                >
+                  ACTUALIZAR
+                </Button>
+              </Form.Item>
+            </Space>
           </Form>
         </div>
       </div>

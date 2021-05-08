@@ -120,7 +120,7 @@ const DetalleLote = () => {
 
       setTimeout(async () => {
         await (await conn).query(`
-          UPDATE LOTES SET LoteSurtido = true 
+          UPDATE lotes SET LoteSurtido = true 
           WHERE LoteId = ${params.id};
         `);
 
