@@ -1,14 +1,18 @@
-import { Button, Form, Select } from "antd";
+import { AutoComplete, Button, DatePicker, Form, Input } from "antd";
 import Title from "antd/lib/typography/Title";
 import { connection as conn } from "../../lib/DataBase";
 import { remote } from "electron";
 import { useEffect, useState } from "react";
 import moment from "moment";
 
-const { Option } = Select;
+interface IOptionsAuto {
+  label: string;
+  value: number;
+}
 interface IAsignacionMaquina {
   maquina: number;
   cliente: number;
+  garantia: string;
 }
 
 interface ClienteBasicModel {
@@ -24,6 +28,8 @@ interface MaquinaBasicModel {
 const AsignarCliente = () => {
   const [clientes, setClientes] = useState<ClienteBasicModel[]>([]);
   const [maquinas, setMaquinas] = useState<MaquinaBasicModel[]>([]);
+  const [optionsC, setOptionsC] = useState<IOptionsAuto[]>([]);
+  const [optionsM, setOptionsM] = useState<IOptionsAuto[]>([]);
 
   const [form] = Form.useForm();
 
@@ -36,7 +42,8 @@ const AsignarCliente = () => {
       await (await conn).query(`
         UPDATE maquinas SET 
           MaquinaCliente = ${values.cliente},
-          MaquinaEntrega = '${moment().format("YY-MM-DD")}'
+          MaquinaEntrega = '${moment().format("YY-MM-DD")}',
+          MaquinaGarantia = '${moment(values.garantia).format("YY-MM-DD")}'
         WHERE MaquinaId = ${values.maquina};
       `);
 
@@ -60,7 +67,7 @@ const AsignarCliente = () => {
   };
 
   const handleGetClientesMaquinas = async () => {
-    const clientesDB = await (await conn).query(`
+    const clientesDB: ClienteBasicModel[] = await (await conn).query(`
         SELECT
             ClienteId,
             ClienteNombre
@@ -69,7 +76,7 @@ const AsignarCliente = () => {
         ORDER BY ClienteNombre;
     `);
 
-    const maquinasDB = await (await conn).query(`
+    const maquinasDB: MaquinaBasicModel[] = await (await conn).query(`
         select
             MaquinaId,
             MaqNombre
@@ -80,8 +87,69 @@ const AsignarCliente = () => {
         order by MaqNombre;
     `);
 
+    setOptionsC(
+      clientesDB.map((a) => {
+        return {
+          label: a.ClienteNombre,
+          value: a.ClienteId,
+        };
+      })
+    );
+    setOptionsM(
+      maquinasDB.map((a) => {
+        return {
+          label: `${a.MaqNombre} - ${a.MaquinaId}`,
+          value: a.MaquinaId,
+        };
+      })
+    );
+
     setMaquinas(maquinasDB);
     setClientes(clientesDB);
+  };
+
+  const handleSearchCliente = (searchText: string) => {
+    setOptionsC(
+      !searchText
+        ? clientes.map((a) => {
+            return {
+              label: a.ClienteNombre,
+              value: a.ClienteId,
+            };
+          })
+        : clientes
+            .filter((a) =>
+              a.ClienteNombre.toLowerCase().trim().includes(searchText)
+            )
+            .map((a) => {
+              return {
+                value: a.ClienteId,
+                label: a.ClienteNombre,
+              };
+            })
+    );
+  };
+
+  const handleSearchMaquina = (searchText: string) => {
+    setOptionsM(
+      !searchText
+        ? maquinas.map((a) => {
+            return {
+              label: `${a.MaqNombre} - ${a.MaquinaId}`,
+              value: a.MaquinaId,
+            };
+          })
+        : maquinas
+            .filter((a) =>
+              a.MaqNombre.toLowerCase().trim().includes(searchText)
+            )
+            .map((a) => {
+              return {
+                label: `${a.MaqNombre} - ${a.MaquinaId}`,
+                value: a.MaquinaId,
+              };
+            })
+    );
   };
 
   return (
@@ -106,15 +174,7 @@ const AsignarCliente = () => {
                 },
               ]}
             >
-              <Select>
-                {clientes.map((a) => {
-                  return (
-                    <Option key={a.ClienteId + "C"} value={a.ClienteId}>
-                      {a.ClienteNombre}
-                    </Option>
-                  );
-                })}
-              </Select>
+              <AutoComplete onSearch={handleSearchCliente} options={optionsC} />
             </Form.Item>
 
             <Form.Item
@@ -127,15 +187,21 @@ const AsignarCliente = () => {
                 },
               ]}
             >
-              <Select>
-                {maquinas.map((a) => {
-                  return (
-                    <Option key={a.MaquinaId + "M"} value={a.MaquinaId}>
-                      {a.MaqNombre} - {a.MaquinaId + "M"}
-                    </Option>
-                  );
-                })}
-              </Select>
+              <AutoComplete onSearch={handleSearchMaquina} options={optionsM} />
+            </Form.Item>
+
+            <Form.Item
+              label="FECHA DE GARANTIA"
+              name="garantia"
+              rules={[
+                {
+                  required: true,
+                  message:
+                    "Es necesario agregar la fecha de garantia de la maquina",
+                },
+              ]}
+            >
+              <DatePicker style={{ width: "100%" }} />
             </Form.Item>
 
             <Form.Item>

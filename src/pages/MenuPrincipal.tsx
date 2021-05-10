@@ -1,5 +1,4 @@
 import Title from "antd/lib/typography/Title";
-import React from "react";
 
 const MenuPrincipal = () => {
   return (

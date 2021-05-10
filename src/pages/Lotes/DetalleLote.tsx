@@ -231,7 +231,7 @@ const DetalleLote = () => {
                           { required: true, message: "Missing first name" },
                         ]}
                       >
-                        <Select placeholder="Nombre">
+                        <Select style={{ width: "450px" }} placeholder="Nombre">
                           {namesMaqsm.map((maq) => {
                             return (
                               <Option value={maq.MaqId}>{maq.MaqNombre}</Option>

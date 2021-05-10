@@ -15,6 +15,7 @@ import {
   Build,
   AssignmentInd,
   Healing,
+  CropFree,
 } from "@material-ui/icons/";
 import SubMenu from "antd/lib/menu/SubMenu";
 import { Link } from "react-router-dom";
@@ -31,7 +32,14 @@ const MenusBar = ({ setCollapsed, collapsed, online }: any) => {
         key="1"
         icon={<DesktopOutlined style={{ fontSize: 17 }} />}
       >
-        <Link to="/home">INICIO</Link>
+        <Link to="/menu">INICIO</Link>
+      </Menu.Item>
+      <Menu.Item
+        style={{ fontSize: 17 }}
+        key="2"
+        icon={<CropFree style={{ fontSize: 22 }} />}
+      >
+        <Link to="/maquinas/scanner">ESCANEO DE MAQUINA</Link>
       </Menu.Item>
       <SubMenu
         key="sub0"

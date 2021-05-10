@@ -1,10 +1,13 @@
-import { List, Table } from "antd";
+import { Button, List, Table } from "antd";
 import { ColumnsType } from "antd/lib/table";
 import Title from "antd/lib/typography/Title";
 import moment from "moment";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { connection as conn } from "../../lib/DataBase";
+import { remote } from "electron";
+import { PosPrintData, PosPrintOptions } from "electron-pos-printer";
+const { PosPrinter } = remote.require("electron-pos-printer");
 
 interface IDetalleMaquina {
   [key: string]: any;
@@ -80,6 +83,28 @@ const DetalleMaquina = () => {
     setMaquina(maquinaDB[0]);
   };
 
+  const handlePrintCodeMaq = async () => {
+    const options: PosPrintOptions = {
+      preview: false, // Preview in window or print
+      width: "200px", //  width of content body
+      margin: "0 0 0 0", // margin of content body
+      copies: 1, // Number of copies to print
+      printerName: "Brother-QL-810W", // printerName: string, check with webContent.getPrinters()
+      timeOutPerLine: 400,
+      silent: true,
+    };
+
+    const data: PosPrintData[] = [
+      {
+        type: "barCode",
+        value: params.id,
+        width: "4px",
+      },
+    ];
+
+    await PosPrinter.print(data, options);
+  };
+
   const columns: ColumnsType<IReparacionesDB> = [
     {
       title: "ID REPARACION",
@@ -127,6 +152,14 @@ const DetalleMaquina = () => {
   return (
     <div className="container">
       <Title className="text-center">DETALLE DE MAQUINA {params.id}M </Title>
+
+      <div className="row mb-5 mt-5">
+        <div className="col-md-12">
+          <Button onClick={() => handlePrintCodeMaq()} type="primary">
+            IMPRIMIR CODIGO DE MAQUINA
+          </Button>
+        </div>
+      </div>
 
       <div className="row mt-5">
         <div className="col-md-12">
