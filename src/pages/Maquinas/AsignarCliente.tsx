@@ -1,4 +1,4 @@
-import { AutoComplete, Button, DatePicker, Form, Input } from "antd";
+import { AutoComplete, Button, DatePicker, Form } from "antd";
 import Title from "antd/lib/typography/Title";
 import { connection as conn } from "../../lib/DataBase";
 import { remote } from "electron";
