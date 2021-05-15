@@ -1,19 +1,38 @@
 import Title from "antd/lib/typography/Title";
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, Select } from "antd";
 import { connection as conn } from "../../lib/DataBase";
 import { remote } from "electron";
-
+import { useEffect, useState } from "react";
 interface IModeloAdd {
   modelo: string;
+  clas: string;
 }
 
 const ModelosAdd = () => {
+  const [clasificaciones, setClasificaciones] = useState<any[]>([]);
+
   const [form] = Form.useForm();
+
+  useEffect(() => {
+    handleGetClas();
+  }, []);
+
+  const handleGetClas = async () => {
+    const clasi: any[] = await (await conn).query(`
+
+      select * from clasificacionesmaquinas;
+
+    `);
+
+    setClasificaciones(clasi);
+  };
+
   const onFinish = async (values: IModeloAdd) => {
     try {
       const result = await (await conn).query(`
-        INSERT INTO maquinasnombres (MaqNombre) VALUES(
-          '${values.modelo}'
+        INSERT INTO maquinasnombres (MaqNombre, MaqClasificacion) VALUES(
+          '${values.modelo}',
+          '${values.clas}'
         );
       `);
 
@@ -55,6 +74,27 @@ const ModelosAdd = () => {
               ]}
             >
               <Input />
+            </Form.Item>
+
+            <Form.Item
+              label="Clasificacion Del Modelo"
+              name="clas"
+              rules={[
+                {
+                  required: true,
+                  message: "Ingresa la clasificacion de la maquinas",
+                },
+              ]}
+            >
+              <Select>
+                {clasificaciones.map((cl) => {
+                  return (
+                    <Select.Option value={cl.ClasNombre}>
+                      {cl.ClasNombre}
+                    </Select.Option>
+                  );
+                })}
+              </Select>
             </Form.Item>
 
             <Form.Item>

@@ -17,7 +17,6 @@ const DetalleLote = () => {
   >([]);
   const [namesMaqsm, setNamesMaqs] = useState<IMaqNombres[]>([]);
   const [sutrido, setSurtido] = useState<boolean>(false);
-  const [classe, setClasse] = useState<{ ClasNombre: string }[]>([]);
 
   const dropMenuFilter = useFiltersTables();
   const history = useHistory();
@@ -37,13 +36,6 @@ const DetalleLote = () => {
 
     `);
 
-    const cats: { ClasNombre: string }[] = await (await conn).query(`
-
-      SELECT * FROM clasificacionesmaquinas;
-
-    `);
-
-    setClasse(cats);
     setNamesMaqs(maqs);
   };
 
@@ -102,14 +94,12 @@ const DetalleLote = () => {
             INSERT INTO maquinas (
                 MaquinaNombre,
                 MaquinaDescripcion,
-                MaquinaClasifiacion,
                 MaquinaLote,
                 MaquinaCliente,
                 MaquinaIdLote
             ) VALUES(
                 ${a.nombre},
                 'LLEGO EN BUEN ESTADO',
-                '${a.tipo}',
                 ${params.id},
                 1,
                 ${i + 1}
@@ -235,24 +225,6 @@ const DetalleLote = () => {
                           {namesMaqsm.map((maq) => {
                             return (
                               <Option value={maq.MaqId}>{maq.MaqNombre}</Option>
-                            );
-                          })}
-                        </Select>
-                      </Form.Item>
-                      <Form.Item
-                        {...restField}
-                        name={[name, "tipo"]}
-                        fieldKey={[name, "tipo"]}
-                        rules={[
-                          { required: true, message: "Missing last name" },
-                        ]}
-                      >
-                        <Select placeholder="Clasifiacion">
-                          {classe.map((maq) => {
-                            return (
-                              <Option value={maq.ClasNombre}>
-                                {maq.ClasNombre}
-                              </Option>
                             );
                           })}
                         </Select>

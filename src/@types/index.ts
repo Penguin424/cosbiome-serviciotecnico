@@ -52,6 +52,8 @@ export interface ICreateCliente {
   ClienteDireccion: string;
   ClienteEstado: string;
   ClienteTelefono: string;
+  colonia: string;
+  cp: string;
 }
 
 export interface IClientesDB {

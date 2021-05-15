@@ -15,12 +15,16 @@ const CreacionClientes = () => {
             ClienteNombre,
             ClienteDireccion,
             ClienteEstado,
-            ClienteTelefono
+            ClienteTelefono,
+            ClienteCp,
+            ClienteColonia
         ) VALUE(
             '${values.ClienteNombre}',
             '${values.ClienteDireccion}',
             '${values.ClienteEstado}',
-            '${values.ClienteTelefono}'
+            '${values.ClienteTelefono}',
+            '${values.cp}',
+            '${values.colonia}'
         );
       `);
 
@@ -68,6 +72,29 @@ const CreacionClientes = () => {
               name="ClienteDireccion"
               rules={[
                 { required: true, message: "Ingresa la direccion del cliente" },
+              ]}
+            >
+              <Input />
+            </Form.Item>
+
+            <Form.Item
+              label="Colonia"
+              name="colonia"
+              rules={[
+                { required: true, message: "Ingresa la colonia del cliente" },
+              ]}
+            >
+              <Input />
+            </Form.Item>
+
+            <Form.Item
+              label="Codigo Postal"
+              name="cp"
+              rules={[
+                {
+                  required: true,
+                  message: "Ingresa el codigo postal del cliente",
+                },
               ]}
             >
               <Input />

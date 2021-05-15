@@ -19,11 +19,14 @@ import {
 } from "@material-ui/icons/";
 import SubMenu from "antd/lib/menu/SubMenu";
 import { Link } from "react-router-dom";
+import usePersm from "../hooks/usePersm";
 
 const MenusBar = ({ setCollapsed, collapsed, online }: any) => {
   const toggle = () => {
     setCollapsed(!collapsed);
   };
+
+  const { ar } = usePersm();
 
   return (
     <Menu mode="inline" defaultSelectedKeys={["1"]}>
@@ -35,6 +38,7 @@ const MenusBar = ({ setCollapsed, collapsed, online }: any) => {
         <Link to="/menu">INICIO</Link>
       </Menu.Item>
       <Menu.Item
+        hidden={ar}
         style={{ fontSize: 17 }}
         key="2"
         icon={<CropFree style={{ fontSize: 22 }} />}
@@ -42,6 +46,7 @@ const MenusBar = ({ setCollapsed, collapsed, online }: any) => {
         <Link to="/maquinas/scanner">ESCANEO DE MAQUINA</Link>
       </Menu.Item>
       <SubMenu
+        disabled={ar}
         key="sub0"
         icon={<ShoppingCartOutlined style={{ fontSize: 17 }} />}
         title="LOTES"
@@ -67,6 +72,7 @@ const MenusBar = ({ setCollapsed, collapsed, online }: any) => {
         title="FUNCIONALIDADES"
       >
         <SubMenu
+          disabled={ar}
           key="sub1materia"
           icon={<People style={{ fontSize: 20 }} />}
           style={{ fontSize: 12 }}
@@ -102,6 +108,7 @@ const MenusBar = ({ setCollapsed, collapsed, online }: any) => {
             <Link to="/maquinas/reparacion">REPARACION</Link>
           </Menu.Item>
           <Menu.Item
+            hidden={ar}
             style={{ fontSize: 14 }}
             key="sub1envases2"
             icon={<ListAltOutlined style={{ fontSize: 20 }} />}
@@ -109,6 +116,7 @@ const MenusBar = ({ setCollapsed, collapsed, online }: any) => {
             <Link to="/maquinas">LISTADO GENERAL</Link>
           </Menu.Item>
           <Menu.Item
+            hidden={ar}
             style={{ fontSize: 14 }}
             key="sub1envases3"
             icon={<PostAddOutlined style={{ fontSize: 20 }} />}
@@ -116,6 +124,7 @@ const MenusBar = ({ setCollapsed, collapsed, online }: any) => {
             <Link to="/maquinas/modelos">AGREGAR MODELOS</Link>
           </Menu.Item>
           <Menu.Item
+            hidden={ar}
             style={{ fontSize: 14 }}
             key="sub1envases4"
             icon={<AssignmentInd style={{ fontSize: 20 }} />}
@@ -124,6 +133,7 @@ const MenusBar = ({ setCollapsed, collapsed, online }: any) => {
           </Menu.Item>
         </SubMenu>
         <SubMenu
+          disabled={ar}
           key="sub1productos"
           icon={<Healing style={{ fontSize: 22 }} />}
           style={{ fontSize: 12 }}
@@ -154,14 +164,21 @@ const MenusBar = ({ setCollapsed, collapsed, online }: any) => {
           <Link to="/ProductoTerminado">PRODUCTO TERMINADO</Link>
         </Menu.Item> */}
       </SubMenu>
-
-      <Menu.Item
-        style={{ fontSize: 17 }}
-        key="3"
+      <SubMenu
         icon={<BarChartOutlined style={{ fontSize: 17 }} />}
+        key="sub2"
+        title="REPORTES"
+        disabled={ar}
       >
-        REPORTES
-      </Menu.Item>
+        <Menu.Item
+          hidden={ar}
+          style={{ fontSize: 17 }}
+          key="3"
+          icon={<BarChartOutlined style={{ fontSize: 17 }} />}
+        >
+          REPORTES
+        </Menu.Item>
+      </SubMenu>
       <Menu.Item
         onClick={toggle}
         style={{ fontSize: 17 }}

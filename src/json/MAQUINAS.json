@@ -1,0 +1,875 @@
+﻿{
+  "Hoja1": [
+    {
+      "0": "1",
+      "EQUIPO": " cavitador 5 EN 1 SCULPTURE",
+      " PRECIO ": " $44,000.00 ",
+      " % descuento ": "15%",
+      " PRECIO EXPO ": "-$-37,400.00 ",
+      " 6 meses ": " $50,600.00 "
+    },
+    {
+      "0": "2",
+      "EQUIPO": "ALTA FRECUENCIA 4 EN 1",
+      " PRECIO ": " $1,350.00 ",
+      " % descuento ": "25%",
+      " PRECIO EXPO ": "-$-1,012.50 ",
+      " 6 meses ": " $1,552.50 "
+    },
+    {
+      "0": "3",
+      "EQUIPO": "ALTA FRECUENCIA 7 EN 1",
+      " PRECIO ": " $1,900.00 ",
+      " % descuento ": "15%",
+      " PRECIO EXPO ": "-$-1,615.00 ",
+      " 6 meses ": " $2,185.00 "
+    },
+    {
+      "0": "4",
+      "EQUIPO": "ANALIZADOR FACIAL",
+      " PRECIO ": " $850.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-765.00 ",
+      " 6 meses ": " $977.50 "
+    },
+    {
+      "0": "5",
+      "EQUIPO": "CARBOX GRANDE CON CALOR",
+      " PRECIO ": " $53,000.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-47,700.00 ",
+      " 6 meses ": " $60,950.00 "
+    },
+    {
+      "0": "6",
+      "EQUIPO": "CARBOXITERAPIA GRANDE SIN CALOR",
+      " PRECIO ": " $42,500.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-38,250.00 ",
+      " 6 meses ": " $48,875.00 "
+    },
+    {
+      "0": "7",
+      "EQUIPO": "CARBOX MODELO ANTERIOR",
+      " PRECIO ": " $36,500.00 ",
+      " % descuento ": "20%",
+      " PRECIO EXPO ": "-$-29,200.00 ",
+      " 6 meses ": " $41,975.00 "
+    },
+    {
+      "0": "8",
+      "EQUIPO": "CARTUCHO DERMA 12  Y 36",
+      " PRECIO ": " $50.00 ",
+      " % descuento ": "0%",
+      " PRECIO EXPO ": "-$-50.00 ",
+      " 6 meses ": " $57.50 "
+    },
+    {
+      "0": "9",
+      "EQUIPO": "CAVITADOR 4D 6 EN 1 AZUL",
+      " PRECIO ": " $25,500.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-22,950.00 ",
+      " 6 meses ": " $29,325.00 "
+    },
+    {
+      "0": "10",
+      "EQUIPO": "CAVITADOR 5D EN 1",
+      " PRECIO ": " $19,500.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-17,550.00 ",
+      " 6 meses ": " $22,425.00 "
+    },
+    {
+      "0": "11",
+      "EQUIPO": "CAVITADOR 8 EN 1 MORADA",
+      " PRECIO ": " $31,000.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-27,900.00 ",
+      " 6 meses ": " $35,650.00 "
+    },
+    {
+      "0": "12",
+      "EQUIPO": "CENTRIFUGA 12 TUBOs",
+      " PRECIO ": " $6,500.00 ",
+      " % descuento ": "0%",
+      " PRECIO EXPO ": "-$-6,500.00 ",
+      " 6 meses ": " $7,475.00 "
+    },
+    {
+      "0": "13",
+      "EQUIPO": "CRIO  2 MANERALES",
+      " PRECIO ": " $59,000.00 ",
+      " % descuento ": "15%",
+      " PRECIO EXPO ": "-$-50,150.00 ",
+      " 6 meses ": " $67,850.00 "
+    },
+    {
+      "0": "14",
+      "EQUIPO": "CRIO 5 EN 1 NEGRA/GRIS PORTATIL",
+      " PRECIO ": " $86,500.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-77,850.00 ",
+      " 6 meses ": " $99,475.00 "
+    },
+    {
+      "0": "15",
+      "EQUIPO": "CRIO 4 MANERALES VERTICAL 7 EN 1",
+      " PRECIO ": " $149,000.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-134,100.00 ",
+      " 6 meses ": " $171,350.00 "
+    },
+    {
+      "0": "16",
+      "EQUIPO": "CRIO 5 EN 1 AZUL VERTICAL",
+      " PRECIO ": " $125,000.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-112,500.00 ",
+      " 6 meses ": " $143,750.00 "
+    },
+    {
+      "0": "17",
+      "EQUIPO": "DERMAPEN MY M",
+      " PRECIO ": " $1,250.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-1,125.00 ",
+      " 6 meses ": " $1,437.50 "
+    },
+    {
+      "0": "18",
+      "EQUIPO": "DERMAPEN DR PEN",
+      " PRECIO ": " $1,700.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-1,530.00 ",
+      " 6 meses ": " $1,955.00 "
+    },
+    {
+      "0": "19",
+      "EQUIPO": "DERMAPEN DR PEN AZUL",
+      " PRECIO ": " $2,500.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-2,250.00 ",
+      " 6 meses ": " $2,875.00 "
+    },
+    {
+      "0": "20",
+      "EQUIPO": "DERMAPEN DR PEN ROSA",
+      " PRECIO ": " $2,500.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-2,250.00 ",
+      " 6 meses ": " $2,875.00 "
+    },
+    {
+      "0": "21",
+      "EQUIPO": "ELECTROCAUTERIO CON LUZ",
+      " PRECIO ": " $1,600.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-1,440.00 ",
+      " 6 meses ": " $1,840.00 "
+    },
+    {
+      "0": "22",
+      "EQUIPO": "ELECTROCAUTERIO MAGLE SIN CURSO",
+      " PRECIO ": " $6,700.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-6,030.00 ",
+      " 6 meses ": " $7,705.00 "
+    },
+    {
+      "0": "23",
+      "EQUIPO": "ELECTROCAUTERIO SIN LUZ",
+      " PRECIO ": " $1,250.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-1,125.00 ",
+      " 6 meses ": " $1,437.50 "
+    },
+    {
+      "0": "24",
+      "EQUIPO": "ELECTRODOS",
+      " PRECIO ": " $7,500.00 ",
+      " % descuento ": "20%",
+      " PRECIO EXPO ": "-$-6,000.00 ",
+      " 6 meses ": " $8,625.00 "
+    },
+    {
+      "0": "25",
+      "EQUIPO": "ELECTRODOS CON COPAS",
+      " PRECIO ": " $12,900.00 ",
+      " % descuento ": "15%",
+      " PRECIO EXPO ": "-$-10,965.00 ",
+      " 6 meses ": " $14,835.00 "
+    },
+    {
+      "0": "26",
+      "EQUIPO": "ELECTROPORADOR + RF",
+      " PRECIO ": " $1,900.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-1,710.00 ",
+      " 6 meses ": " $2,185.00 "
+    },
+    {
+      "0": "27",
+      "EQUIPO": "ELECTROPORADOR NEGRO",
+      " PRECIO ": " $1,300.00 ",
+      " % descuento ": "15%",
+      " PRECIO EXPO ": "-$-1,105.00 ",
+      " 6 meses ": " $1,495.00 "
+    },
+    {
+      "0": "28",
+      "EQUIPO": "EMS SLIM SCULPT AZUL",
+      " PRECIO ": " $185,000.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-166,500.00 ",
+      " 6 meses ": " $212,750.00 "
+    },
+    {
+      "0": "29",
+      "EQUIPO": "EMS SLIM NEGRO",
+      " PRECIO ": " $175,000.00 ",
+      " % descuento ": "0%",
+      " PRECIO EXPO ": "-$-175,000.00 ",
+      " 6 meses ": " $203,000.00 "
+    },
+    {
+      "0": "30",
+      "EQUIPO": "EMS SLIM SCULPT BLANCO",
+      " PRECIO ": " $165,000.00 ",
+      " % descuento ": "5%",
+      " PRECIO EXPO ": "-$-156,750.00 ",
+      " 6 meses ": " $189,750.00 "
+    },
+    {
+      "0": "31",
+      "EQUIPO": "G5",
+      " PRECIO ": " $21,000.00 ",
+      " % descuento ": "15%",
+      " PRECIO EXPO ": "-$-17,850.00 ",
+      " 6 meses ": " $24,150.00 "
+    },
+    {
+      "0": "32",
+      "EQUIPO": "GALVANICA NUEVO MODELO 3 EN 1",
+      " PRECIO ": " $2,400.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-2,160.00 ",
+      " 6 meses ": " $2,760.00 "
+    },
+    {
+      "0": "33",
+      "EQUIPO": "GALVANICA PORTATIL",
+      " PRECIO ": " $1,800.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-1,620.00 ",
+      " 6 meses ": " $2,070.00 "
+    },
+    {
+      "0": "34",
+      "EQUIPO": "HIALURONIC PEN DORADO",
+      " PRECIO ": " $3,500.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-3,150.00 ",
+      " 6 meses ": " $4,025.00 "
+    },
+    {
+      "0": "35",
+      "EQUIPO": "HIALURONIC PEN NEGRO",
+      " PRECIO ": " $4,500.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-4,050.00 ",
+      " 6 meses ": " $5,175.00 "
+    },
+    {
+      "0": "36",
+      "EQUIPO": "hidrodermoabrasion 6 en 1",
+      " PRECIO ": " $21,000.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-18,900.00 ",
+      " 6 meses ": " $24,150.00 "
+    },
+    {
+      "0": "37",
+      "EQUIPO": "HIDRODERMOABRASION  7 EN 1 C MASCARA",
+      " PRECIO ": " $22,500.00 ",
+      " % descuento ": "20%",
+      " PRECIO EXPO ": "-$-18,000.00 ",
+      " 6 meses ": " $25,875.00 "
+    },
+    {
+      "0": "39",
+      "EQUIPO": "HIDRO ALICE",
+      " PRECIO ": " $85,000.00 ",
+      " % descuento ": "15%",
+      " PRECIO EXPO ": "-$-72,250.00 ",
+      " 6 meses ": " $97,750.00 "
+    },
+    {
+      "0": "40",
+      "EQUIPO": "HIDRO  SPACE OXIGEN  CASCO",
+      " PRECIO ": " $120,000.00 ",
+      " % descuento ": "20%",
+      " PRECIO EXPO ": "-$-96,000.00 ",
+      " 6 meses ": " $138,000.00 "
+    },
+    {
+      "0": "41",
+      "EQUIPO": "HIFU  2 EN 1 FACIAL Y CORPORAL 2 EN 1- 1 LINEA",
+      " PRECIO ": " $79,000.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-71,100.00 ",
+      " 6 meses ": " $90,850.00 "
+    },
+    {
+      "0": "42",
+      "EQUIPO": "HIFU FACIAL CORPORAL VAGINAL 3 EN 1 1LINEA",
+      " PRECIO ": " $96,000.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-86,400.00 ",
+      " 6 meses ": " $110,400.00 "
+    },
+    {
+      "0": "43",
+      "EQUIPO": "HIFU FACIAL Y CORPORAL 2 EN 1 3D 11 LINEAS",
+      " PRECIO ": " $135,000.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-121,500.00 ",
+      " 6 meses ": " $155,250.00 "
+    },
+    {
+      "0": "44",
+      "EQUIPO": "HIFU FACIAL Y CORPORAL 2 EN 1-4D 12 LINEAS",
+      " PRECIO ": " $145,000.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-130,500.00 ",
+      " 6 meses ": " $166,750.00 "
+    },
+    {
+      "0": "45",
+      "EQUIPO": "HIFU FACIAL CORPORAL +VAGINAL 3 EN 1 3D",
+      " PRECIO ": " $149,000.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-134,100.00 ",
+      " 6 meses ": " $171,350.00 "
+    },
+    {
+      "0": "46",
+      "EQUIPO": "HIFU 4D FACIAL CORPORAL + LIPOSONIX         2 EN 1",
+      " PRECIO ": " $165,000.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-148,500.00 ",
+      " 6 meses ": " $189,750.00 "
+    },
+    {
+      "0": "47",
+      "EQUIPO": "HIFU FACIAL CORPORAL + LIPOSONIX 1 LINEA    2 EN 1",
+      " PRECIO ": " $110,000.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-99,000.00 ",
+      " 6 meses ": " $126,500.00 "
+    },
+    {
+      "0": "48",
+      "EQUIPO": "HIFU VAGINAL",
+      " PRECIO ": " $58,000.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-52,200.00 ",
+      " 6 meses ": " $66,700.00 "
+    },
+    {
+      "0": "49",
+      "EQUIPO": "HIFU 4D FACIAL CORPORAL+LIPOSNIX+VAGINAL  4 EN 1",
+      " PRECIO ": " $185,500.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-166,950.00 ",
+      " 6 meses ": " $213,325.00 "
+    },
+    {
+      "0": "50",
+      "EQUIPO": "IPL ­+ LASER  YAG 2EN 1 PORTATIL",
+      " PRECIO ": " $90,000.00 ",
+      " % descuento ": "20%",
+      " PRECIO EXPO ": "-$-72,000.00 ",
+      " 6 meses ": " $103,500.00 "
+    },
+    {
+      "0": "51",
+      "EQUIPO": "IPL HAIR REMOVAL PORTATIL",
+      " PRECIO ": " $75,000.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-67,500.00 ",
+      " 6 meses ": " $86,250.00 "
+    },
+    {
+      "0": "52",
+      "EQUIPO": "IPL + RF+ PICOSEOND (3 EN 1) TORRE",
+      " PRECIO ": " $128,000.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-115,200.00 ",
+      " 6 meses ": " $147,200.00 "
+    },
+    {
+      "0": "53",
+      "EQUIPO": "IPL+PICOSECOND VERTICAL 2 EN 1 ROJA VERTICAL",
+      " PRECIO ": " $95,000.00 ",
+      " % descuento ": "15%",
+      " PRECIO EXPO ": "-$-80,750.00 ",
+      " 6 meses ": " $109,250.00 "
+    },
+    {
+      "0": "54",
+      "EQUIPO": "IPL VERTICAL",
+      " PRECIO ": " $88,000.00 ",
+      " % descuento ": "20%",
+      " PRECIO EXPO ": "-$-70,400.00 ",
+      " 6 meses ": " $101,200.00 "
+    },
+    {
+      "0": "55",
+      "EQUIPO": "IPL +DIODO PORTATIL",
+      " PRECIO ": " $165,000.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-148,500.00 ",
+      " 6 meses ": " $189,750.00 "
+    },
+    {
+      "0": "56",
+      "EQUIPO": "LAMPARA DE WOOD",
+      " PRECIO ": " $1,800.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-1,620.00 ",
+      " 6 meses ": " $2,070.00 "
+    },
+    {
+      "0": "57",
+      "EQUIPO": "LAMPARA METALICA CON LUPA LED",
+      " PRECIO ": " $2,300.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-2,070.00 ",
+      " 6 meses ": " $2,645.00 "
+    },
+    {
+      "0": "58",
+      "EQUIPO": "LASER 980 NANOMETROS",
+      " PRECIO ": " $79,000.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-71,100.00 ",
+      " 6 meses ": " $90,850.00 "
+    },
+    {
+      "0": "59",
+      "EQUIPO": "LASER CO2",
+      " PRECIO ": " $210,000.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-189,000.00 ",
+      " 6 meses ": " $241,500.00 "
+    },
+    {
+      "0": "60",
+      "EQUIPO": "LASER DIODO 3 LONGITUDES 808 portatil",
+      " PRECIO ": " $114,000.00 ",
+      " % descuento ": "15%",
+      " PRECIO EXPO ": "-$-96,900.00 ",
+      " 6 meses ": " $131,100.00 "
+    },
+    {
+      "0": "61",
+      "EQUIPO": "LASER DIODO 3 LONGITU Vertical",
+      " PRECIO ": " $165,000.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-148,500.00 ",
+      " 6 meses ": " $189,750.00 "
+    },
+    {
+      "0": "62",
+      "EQUIPO": "LASER DIODO  3 LONGITUDESPREMIUM TORRE",
+      " PRECIO ": " $205,000.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-184,500.00 ",
+      " 6 meses ": " $235,750.00 "
+    },
+    {
+      "0": "63",
+      "EQUIPO": "LASER DIODO 3 LONG + PICOSECOND",
+      " PRECIO ": " $195,000.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-175,500.00 ",
+      " 6 meses ": " $224,250.00 "
+    },
+    {
+      "0": "64",
+      "EQUIPO": "LASER ND YAG",
+      " PRECIO ": " $59,000.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-53,100.00 ",
+      " 6 meses ": " $67,850.00 "
+    },
+    {
+      "0": "65",
+      "EQUIPO": "LENTES DE AUMENTO",
+      " PRECIO ": " $450.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-405.00 ",
+      " 6 meses ": " $522.00 "
+    },
+    {
+      "0": "66",
+      "EQUIPO": "LIPOSONIX TORRE",
+      " PRECIO ": " $119,000.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-107,100.00 ",
+      " 6 meses ": " $136,850.00 "
+    },
+    {
+      "0": "67",
+      "EQUIPO": "LIPOLASER",
+      " PRECIO ": " $29,000.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-26,100.00 ",
+      " 6 meses ": " $33,350.00 "
+    },
+    {
+      "0": "68",
+      "EQUIPO": "MARCARA LED SIN CUELLO",
+      " PRECIO ": " $2,350.00 ",
+      " % descuento ": "20%",
+      " PRECIO EXPO ": "-$-1,880.00 ",
+      " 6 meses ": " $2,702.50 "
+    },
+    {
+      "0": "69",
+      "EQUIPO": "MASCARA LED CUELLO",
+      " PRECIO ": " $2,600.00 ",
+      " % descuento ": "20%",
+      " PRECIO EXPO ": "-$-2,080.00 ",
+      " 6 meses ": " $2,990.00 "
+    },
+    {
+      "0": "70",
+      "EQUIPO": "MARTILLO FRIO CALIENTE",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": " $-   ",
+      " 6 meses ": " $-   "
+    },
+    {
+      "0": "71",
+      "EQUIPO": "MEMBRANA CRIO  CH",
+      " PRECIO ": " $125.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-112.50 ",
+      " 6 meses ": " $143.75 "
+    },
+    {
+      "0": "72",
+      "EQUIPO": "MEMBRANA CRIO GR",
+      " PRECIO ": " $135.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-121.50 ",
+      " 6 meses ": " $155.25 "
+    },
+    {
+      "0": "73",
+      "EQUIPO": "MESA DE SERVICIO",
+      " PRECIO ": " $5,500.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-4,950.00 ",
+      " 6 meses ": " $6,325.00 "
+    },
+    {
+      "0": "75",
+      "EQUIPO": "MICRO 3 EN 1",
+      " PRECIO ": " $3,400.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-3,060.00 ",
+      " 6 meses ": " $3,910.00 "
+    },
+    {
+      "0": "76",
+      "EQUIPO": "MICRO 3 EN  1 MODELO NUEVO",
+      " PRECIO ": " $4,900.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-4,410.00 ",
+      " 6 meses ": " $5,635.00 "
+    },
+    {
+      "0": "77",
+      "EQUIPO": "MICRO 5 EN 1",
+      " PRECIO ": " $11,500.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-10,350.00 ",
+      " 6 meses ": " $13,225.00 "
+    },
+    {
+      "0": "78",
+      "EQUIPO": "OMEGA LIGTH",
+      " PRECIO ": " $5,000.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-4,500.00 ",
+      " 6 meses ": " $5,750.00 "
+    },
+    {
+      "0": "79",
+      "EQUIPO": "ONDAS DE CHOQUE",
+      " PRECIO ": " $85,000.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-76,500.00 ",
+      " 6 meses ": " $97,750.00 "
+    },
+    {
+      "0": "80",
+      "EQUIPO": "PDT CON VAPOR",
+      " PRECIO ": " $11,000.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-9,900.00 ",
+      " 6 meses ": " $12,650.00 "
+    },
+    {
+      "0": "81",
+      "EQUIPO": "PDT 7 COLORES CURVO",
+      " PRECIO ": " $6,800.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-6,120.00 ",
+      " 6 meses ": " $7,820.00 "
+    },
+    {
+      "0": "82",
+      "EQUIPO": "PDT 7 COLORES CASCO",
+      " PRECIO ": " $5,000.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-4,500.00 ",
+      " 6 meses ": " $5,750.00 "
+    },
+    {
+      "0": "83",
+      "EQUIPO": "PDT LAMPARA",
+      " PRECIO ": " $23,000.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-20,700.00 ",
+      " 6 meses ": " $26,450.00 "
+    },
+    {
+      "0": "84",
+      "EQUIPO": "PICOSECOND",
+      " PRECIO ": " $72,000.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-64,800.00 ",
+      " 6 meses ": " $82,800.00 "
+    },
+    {
+      "0": "85",
+      "EQUIPO": "PISTOLA MESOTERAPIA",
+      " PRECIO ": " $1,900.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-1,710.00 ",
+      " 6 meses ": " $2,185.00 "
+    },
+    {
+      "0": "86",
+      "EQUIPO": "PRESOTERAPIA CON INFRAROJOS GRIS",
+      " PRECIO ": " $22,500.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-20,250.00 ",
+      " 6 meses ": " $25,875.00 "
+    },
+    {
+      "0": "87",
+      "EQUIPO": "PRESOTERAPIA MORADA SIN INFRAROJO",
+      " PRECIO ": " $17,500.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-15,750.00 ",
+      " 6 meses ": " $20,125.00 "
+    },
+    {
+      "0": "88",
+      "EQUIPO": "PUNTAS DE DIAMANTE SOLO PUNTAS",
+      " PRECIO ": " $650.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-585.00 ",
+      " 6 meses ": " $747.50 "
+    },
+    {
+      "0": "89",
+      "EQUIPO": "PUNTAS KIT MICRODERMO ",
+      " PRECIO ": " $900.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-810.00 ",
+      " 6 meses ": " $1,035.00 "
+    },
+    {
+      "0": "90",
+      "EQUIPO": "PUNTAS PLASMA 4TA",
+      " PRECIO ": " $70.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-63.00 ",
+      " 6 meses ": " $80.50 "
+    },
+    {
+      "0": "91",
+      "EQUIPO": "PUNTAS PLASMA PAQT 10",
+      " PRECIO ": " $150.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-135.00 ",
+      " 6 meses ": " $172.50 "
+    },
+    {
+      "0": "92",
+      "EQUIPO": "PUNTAS PLASMA PAQT 5",
+      " PRECIO ": " $100.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-90.00 ",
+      " 6 meses ": " $115.00 "
+    },
+    {
+      "0": "93",
+      "EQUIPO": "RADIO FRECUENCIA FRACCIONADA",
+      " PRECIO ": " $75,000.00 ",
+      " % descuento ": "15%",
+      " PRECIO EXPO ": "-$-63,750.00 ",
+      " 6 meses ": " $86,250.00 "
+    },
+    {
+      "0": "94",
+      "EQUIPO": "RADIO FRECUENCIA FRACCIONADA CON MARTILLO FRIO",
+      " PRECIO ": " $89,000.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-80,100.00 ",
+      " 6 meses ": " $102,350.00 "
+    },
+    {
+      "0": "95",
+      "EQUIPO": "ROBOT FACIAL 4 EN 1",
+      " PRECIO ": " $6,300.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-5,670.00 ",
+      " 6 meses ": " $7,245.00 "
+    },
+    {
+      "0": "96",
+      "EQUIPO": "ROBOT FACIAL 8 EN 1",
+      " PRECIO ": " $11,500.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-10,350.00 ",
+      " 6 meses ": " $13,225.00 "
+    },
+    {
+      "0": "97",
+      "EQUIPO": "SKIN SCRUBER spray",
+      " PRECIO ": " $2,300.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-2,070.00 ",
+      " 6 meses ": " $2,645.00 "
+    },
+    {
+      "0": "98",
+      "EQUIPO": "ULTRASONIDO 3MHZ",
+      " PRECIO ": " $8,850.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-7,965.00 ",
+      " 6 meses ": " $10,177.50 "
+    },
+    {
+      "0": "99",
+      "EQUIPO": "ULTRASONIDO 628 2 FUNCIONES",
+      " PRECIO ": " $1,900.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-1,710.00 ",
+      " 6 meses ": " $2,185.00 "
+    },
+    {
+      "0": "100",
+      "EQUIPO": "ULTRASONIDO 638 3 FUN",
+      " PRECIO ": " $2,200.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-1,980.00 ",
+      " 6 meses ": " $2,530.00 "
+    },
+    {
+      "0": "101",
+      "EQUIPO": "ULTRASONIDO PORTATIL",
+      " PRECIO ": " $1,750.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-1,575.00 ",
+      " 6 meses ": " $2,012.50 "
+    },
+    {
+      "0": "102",
+      "EQUIPO": "VACUM COPAS",
+      " PRECIO ": " $6,300.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-5,670.00 ",
+      " 6 meses ": " $7,245.00 "
+    },
+    {
+      "0": "103",
+      "EQUIPO": "VACUM COPAS COLOR NARANJA",
+      " PRECIO ": " $18,000.00 ",
+      " % descuento ": "15%",
+      " PRECIO EXPO ": "-$-15,300.00 ",
+      " 6 meses ": " $20,700.00 "
+    },
+    {
+      "0": "104",
+      "EQUIPO": "VAPOR CON PEDESTAL",
+      " PRECIO ": " $4,400.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-3,960.00 ",
+      " 6 meses ": " $5,060.00 "
+    },
+    {
+      "0": "105",
+      "EQUIPO": "VAPOR CON PEDESTAL Y LUPA",
+      " PRECIO ": " $5,200.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-4,680.00 ",
+      " 6 meses ": " $5,980.00 "
+    },
+    {
+      "0": "106",
+      "EQUIPO": "VAPOR FRIO CALOR",
+      " PRECIO ": " $2,600.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-2,340.00 ",
+      " 6 meses ": " $2,990.00 "
+    },
+    {
+      "0": "107",
+      "EQUIPO": "VELASHAPE",
+      " PRECIO ": " $125,000.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-112,500.00 ",
+      " 6 meses ": " $143,750.00 "
+    },
+    {
+      "0": "108",
+      "EQUIPO": "VELASHAPE 4 EN 1",
+      " PRECIO ": " $185,000.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-166,500.00 ",
+      " 6 meses ": " $212,750.00 "
+    },
+    {
+      "0": "109",
+      "EQUIPO": "ENDERMOLOGY",
+      " PRECIO ": " $125,000.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-112,500.00 ",
+      " 6 meses ": " $143,750.00 "
+    },
+    {
+      "0": "110",
+      "EQUIPO": "VELASAHPE+ENDERMOLOGY + CRIO+CAVI+RF",
+      " PRECIO ": " $265,000.00 ",
+      " % descuento ": "10%",
+      " PRECIO EXPO ": "-$-238,500.00 ",
+      " 6 meses ": " $304,750.00 "
+    },
+    {
+      "0": "111",
+      "EQUIPO": "VELASAHPE+ENDERMOLOGY 3 MANERALES+CAVI+LIPOLASER",
+      " PRECIO ": " $245,000.00 ",
+      " % descuento ": "8%",
+      " PRECIO EXPO ": "-$-225,400.00 ",
+      " 6 meses ": " $281,750.00 "
+    }
+  ]
+}

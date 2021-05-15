@@ -3,6 +3,11 @@ import Title from "antd/lib/typography/Title";
 import { connection as conn } from "../../lib/DataBase";
 import { remote } from "electron";
 import { useEffect, useState } from "react";
+import { PosPrintData, PosPrintOptions } from "electron-pos-printer";
+import { join } from "path";
+import moment from "moment";
+import usePersm from "../../hooks/usePersm";
+const { PosPrinter } = remote.require("electron-pos-printer");
 
 interface IOptionsAutoC {
   label: string;
@@ -35,6 +40,7 @@ const Reparacion = () => {
   const [optionsM, setOptionsM] = useState<IOptionsAutoC[]>([]);
 
   const [form] = Form.useForm();
+  const { user } = usePersm();
 
   useEffect(() => {
     handleGetClientesMaquinas();
@@ -44,6 +50,17 @@ const Reparacion = () => {
     try {
       values.costoIncial = parseInt(values.costoIncial.toString());
       console.log(values);
+
+      const options: PosPrintOptions = {
+        preview: false, // Preview in window or print
+        width: "300px", //  width of content body
+        margin: "0 0 0 0", // margin of content body
+        copies: 1, // Number of copies to print
+        printerName: "TM20", // printerName: string, check with webContent.getPrinters()
+        timeOutPerLine: 400,
+        pageSize: { height: 301000, width: 71000 }, // page size
+        silent: true,
+      };
 
       const result = await (await conn).query(`
         insert into reparaciones (
@@ -64,10 +81,133 @@ const Reparacion = () => {
         WHERE MaquinaId = ${values.maquina};
       `);
 
+      const dataCliente: PosPrintData[] = [
+        {
+          type: "image",
+          path: join(process.cwd(), "src/assets/ticket.png"),
+          width: "190px",
+        },
+        {
+          type: "text",
+          value: "REPARACION",
+          style: `text-align:center;`,
+          css: { "font-weight": "700", "font-size": "18px" },
+        },
+        {
+          type: "text",
+          value: `${moment().format("L")} - ${moment().format("LTS")}`,
+          style: `text-align:center; margin-top: 10px`,
+        },
+        {
+          type: "text",
+          value: `${
+            clientes.filter((a) => a.ClienteId === values.cliente)[0]
+              .ClienteNombre
+          } - 3335607808`,
+          style: `text-align:center; margin-top: 10px`,
+        },
+        {
+          type: "text",
+          value: `Operador: ${user}`,
+          style: `text-align:center; margin-top: 10px`,
+        },
+        {
+          type: "text",
+          value: `TICKET NO. ${result.insertId}`,
+          style: `text-align:center; margin-top: 10px`,
+        },
+        {
+          type: "text",
+          value: `MAQUINA EN REAPARACION: ${
+            maquinas.filter((a) => a.MaquinaId === values.maquina)[0].MaqNombre
+          }`,
+          style: `text-align:center; margin-top: 30px`,
+        },
+        {
+          type: "text",
+          value: `MOTIVO<br/>${values.motivo}`,
+          style: `text-align:center; margin-top: 10px`,
+        },
+        {
+          type: "text",
+          value: `COSTO DE REVISION<br/>${values.costoIncial}`,
+          style: `text-align:center; margin-top: 10px`,
+        },
+        {
+          type: "text",
+          value: `<u>____________________<u/>`,
+          style: `text-align:center; margin-top: 30px`,
+        },
+        {
+          type: "text",
+          value: `FIRMA DE CLIENTE`,
+          style: `text-align:center;`,
+        },
+      ];
+
+      const data: PosPrintData[] = [
+        {
+          type: "image",
+          path: join(process.cwd(), "src/assets/ticket.png"),
+          width: "190px",
+        },
+        {
+          type: "text",
+          value: "REPARACION",
+          style: `text-align:center;`,
+          css: { "font-weight": "700", "font-size": "18px" },
+        },
+        {
+          type: "text",
+          value: `${moment().format("L")} - ${moment().format("LTS")}`,
+          style: `text-align:center; margin-top: 10px`,
+        },
+        {
+          type: "text",
+          value: `${
+            clientes.filter((a) => a.ClienteId === values.cliente)[0]
+              .ClienteNombre
+          } - 3335607808`,
+          style: `text-align:center; margin-top: 10px`,
+        },
+        {
+          type: "text",
+          value: `Operador: ${user}`,
+          style: `text-align:center; margin-top: 10px`,
+        },
+        {
+          type: "text",
+          value: `TICKET NO. ${result.insertId}`,
+          style: `text-align:center; margin-top: 10px`,
+        },
+        {
+          type: "text",
+          value: `MAQUINA EN REAPARACION: ${
+            maquinas.filter((a) => a.MaquinaId === values.maquina)[0].MaqNombre
+          }`,
+          style: `text-align:center; margin-top: 30px`,
+        },
+        {
+          type: "text",
+          value: `MOTIVO<br/>${values.motivo}`,
+          style: `text-align:center; margin-top: 10px`,
+        },
+        {
+          type: "text",
+          value: `COSTO DE REVISION<br/>${values.costoIncial}`,
+          style: `text-align:center; margin-top: 10px`,
+        },
+      ];
+
+      await PosPrinter.print(data, options);
+      await PosPrinter.print(dataCliente, options);
+
       new remote.Notification({
         title: "REPARACION AGENDADA EXITOSAMENTE",
         body: `ID DE REPARACION: ${result.insertId}`,
       }).show();
+
+      handleGetClientesMaquinas();
 
       form.resetFields();
     } catch (error) {
