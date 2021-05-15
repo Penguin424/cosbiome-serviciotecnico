@@ -1,4 +1,4 @@
-import { AutoComplete, Button, Form, Input } from "antd";
+import { AutoComplete, Button, Form, Input, Select } from "antd";
 import Title from "antd/lib/typography/Title";
 import { connection as conn } from "../../lib/DataBase";
 import { remote } from "electron";
@@ -30,6 +30,7 @@ interface IFormReparacion {
   maquina: number;
   costoIncial: number;
   motivo: string;
+  metodo: string;
 }
 
 const Reparacion = () => {
@@ -62,21 +63,27 @@ const Reparacion = () => {
         silent: true,
       };
 
-      const result = await (await conn).query(`
+      const result = await (
+        await conn
+      ).query(`
         insert into reparaciones (
           ReparacionCliente,
           ReparacionMAquina,
           ReparacionCostoInicial,
-          ReparacionMotivo
+          ReparacionMotivo,
+          ReparacionMetodoPago
         ) values(
           ${values.cliente},
           ${values.maquina},
           ${values.costoIncial},
-          '${values.motivo}'
+          '${values.motivo}',
+          '${values.metodo}'
         );
       `);
 
-      await (await conn).query(`
+      await (
+        await conn
+      ).query(`
         UPDATE maquinas SET MaquinaReparacion = true
         WHERE MaquinaId = ${values.maquina};
       `);
@@ -220,7 +227,9 @@ const Reparacion = () => {
   };
 
   const handleGetClientesMaquinas = async () => {
-    const clientesDB: ClienteBasicModel[] = await (await conn).query(`
+    const clientesDB: ClienteBasicModel[] = await (
+      await conn
+    ).query(`
       SELECT
           ClienteId,
           ClienteNombre
@@ -229,7 +238,9 @@ const Reparacion = () => {
       ORDER BY ClienteNombre;
     `);
 
-    const maquinasDB: MaquinaBasicModel[] = await (await conn).query(`
+    const maquinasDB: MaquinaBasicModel[] = await (
+      await conn
+    ).query(`
       select
           MaquinaId,
           MaqNombre,
@@ -310,6 +321,10 @@ const Reparacion = () => {
         <div className="col-md-12">
           <Form
             name="creacionlote"
+            initialValues={{
+              costoIncial: 0,
+              metodo: "CONTADO",
+            }}
             onFinish={onFinish}
             form={form}
             layout="vertical"
@@ -355,6 +370,45 @@ const Reparacion = () => {
               ]}
             >
               <Input type="number" />
+            </Form.Item>
+
+            <Form.Item
+              label="MAQUINA"
+              name="maquina"
+              rules={[
+                {
+                  required: true,
+                  message: "Es necesario agregar la maquina a asignar",
+                },
+              ]}
+            >
+              <AutoComplete onSearch={handleSearchMaquina} options={optionsM} />
+            </Form.Item>
+
+            <Form.Item
+              label="METODO DE PAGO"
+              name="metodo"
+              rules={[
+                {
+                  required: true,
+                  message: "Es necesario agregar el costo inicial",
+                },
+              ]}
+            >
+              <Select>
+                <Select.Option value="CONTADO">CONTADO</Select.Option>
+                <Select.Option value="MERCADO PAGO">MERCADO PAGO</Select.Option>
+                <Select.Option value="TRANSFERENCIA">
+                  TRANSFERENCIA
+                </Select.Option>
+                <Select.Option value="DESPOSITO BANCARIO">
+                  DESPOSITO BANCARIO
+                </Select.Option>
+                <Select.Option value="TARJETA">TARJETA</Select.Option>
+                <Select.Option value="3 MESES">3 MESES</Select.Option>
+                <Select.Option value="6 MESES">6 MESES</Select.Option>
+                <Select.Option value="1 2MESES">12 MESES</Select.Option>
+              </Select>
             </Form.Item>
 
             <Form.Item

@@ -16,6 +16,7 @@ import {
   AssignmentInd,
   Healing,
   CropFree,
+  FlightTakeoff,
 } from "@material-ui/icons/";
 import SubMenu from "antd/lib/menu/SubMenu";
 import { Link } from "react-router-dom";
@@ -130,6 +131,13 @@ const MenusBar = ({ setCollapsed, collapsed, online }: any) => {
             icon={<AssignmentInd style={{ fontSize: 20 }} />}
           >
             <Link to="/maquinas/asignar">ASIGNAR MAQUINA A CLIENTE</Link>
+          </Menu.Item>
+          <Menu.Item
+            style={{ fontSize: 14 }}
+            key="sub1envases5"
+            icon={<FlightTakeoff style={{ fontSize: 20 }} />}
+          >
+            <Link to="/maquinas/externa">MAQUINA EXTERNA</Link>
           </Menu.Item>
         </SubMenu>
         <SubMenu

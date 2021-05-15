@@ -19,6 +19,7 @@ import Reparaciones from "./pages/ReparacionesMan/Reparaciones";
 import DetalleReparacion from "./pages/ReparacionesMan/DetalleReparacion";
 import DetalleMaquina from "./pages/Maquinas/DetalleMaquina";
 import ScannerMaquina from "./pages/Maquinas/ScannerMaquina";
+import MaquinaExterna from "./pages/Maquinas/MaquinaExterna";
 
 const App = () => {
   return (
@@ -41,6 +42,7 @@ const App = () => {
           <Route exact path="/maquinas/reparacion" component={Reparacion} />
           <Route exact path="/maquinas/modelos" component={ModelosAdd} />
           <Route exact path="/maquinas/asignar" component={AsignarCliente} />
+          <Route exact path="/maquinas/externa" component={MaquinaExterna} />
           <Route exact path="/maquinas/scanner" component={ScannerMaquina} />
           <Route
             exact

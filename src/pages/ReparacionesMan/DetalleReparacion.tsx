@@ -1,10 +1,11 @@
-import { Button, Form, Input, List, Space } from "antd";
+import { Button, Form, Input, List, Space, Spin } from "antd";
 import Title from "antd/lib/typography/Title";
 import moment from "moment";
 import { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { connection as conn } from "../../lib/DataBase";
 import { remote } from "electron";
+import TextArea from "antd/lib/input/TextArea";
 
 interface IDetalleReparacion {
   [key: string]: any;
@@ -13,10 +14,13 @@ interface IDetalleReparacion {
   ClienteNombre: string;
   ClienteDireccion: string;
   ReparacionCostoTotal: number;
+  ReparacionMotivo: string;
   ReparacionCostoInicial: number;
   MaquinaId: number;
   ReparacionId: number;
   ReparacionFecha: Date;
+  ReparacionEntrega: Date;
+  ReparacionMetodoPago: string;
 }
 
 const DetalleReparacion = () => {
@@ -31,6 +35,8 @@ const DetalleReparacion = () => {
     MaquinaId: 0,
     ReparacionId: 0,
     ReparacionFecha: new Date(),
+    ReparacionEntrega: new Date(),
+    ReparacionMetodoPago: "",
   });
 
   const params = useParams<{ id: string }>();
@@ -43,7 +49,9 @@ const DetalleReparacion = () => {
   }, []);
 
   const handleGetReparacion = async () => {
-    const reparacionDB: IDetalleReparacion[] = await (await conn).query(`
+    const reparacionDB: IDetalleReparacion[] = await (
+      await conn
+    ).query(`
       select 
 	      ReparacionId,
 	      ReparacionFecha,
@@ -54,7 +62,9 @@ const DetalleReparacion = () => {
 	      ClienteDireccion,
 	      ClienteTelefono,
 	      MaquinaId,
-	      MaqNombre
+	      MaqNombre,
+        ReparacionEntrega,
+        ReparacionMetodoPago
       from reparaciones
       inner join clientes on ClienteId = ReparacionCliente
       inner join maquinas on MaquinaId = ReparacionMaquina
@@ -62,21 +72,32 @@ const DetalleReparacion = () => {
       where ReparacionId = ${params.id};
     `);
 
+    console.log(reparacionDB[0].ReparacionMotivo);
+
     setReparacion(reparacionDB[0]);
   };
 
-  const onFinish = async (values: { total: string; fecha: string }) => {
+  const onFinish = async (values: {
+    total: string;
+    fecha: string;
+    motivo: string;
+  }) => {
     try {
-      await (await conn).query(`
+      await (
+        await conn
+      ).query(`
         UPDATE reparaciones
         SET 
           ReparacionCostoTotal = ${parseInt(values.total)},
           ReparacionEntrega = '${moment().format("YY-MM-DD")}',
+          ReparacionMotivo = '${values.motivo}',
           ReparacionCompletada = true
         WHERE ReparacionId = ${params.id};
       `);
 
-      await (await conn).query(`
+      await (
+        await conn
+      ).query(`
         UPDATE maquinas SET MaquinaReparacion = false
         WHERE MaquinaId = ${reparacion.MaquinaId};
       `);
@@ -99,12 +120,17 @@ const DetalleReparacion = () => {
 
   const handleUpdateDateTotal = async () => {
     try {
-      const data: { total: string; fecha: string } = form.getFieldsValue();
+      const data: { total: string; fecha: string; motivo: string } =
+        form.getFieldsValue();
 
-      await (await conn).query(`
+      await (
+        await conn
+      ).query(`
         UPDATE reparaciones
         SET
-          ReparacionEntrega = '${moment(data.fecha).format("YY-MM-DD")}'
+          ReparacionCostoTotal = ${parseInt(data.total)},
+          ReparacionEntrega = '${moment(data.fecha).format("YY-MM-DD")}',
+          ReparacionMotivo = '${data.motivo}'
         WHERE ReparacionId = ${params.id};
       `);
     } catch (error) {
@@ -142,63 +168,86 @@ const DetalleReparacion = () => {
         </div>
       </div>
 
-      <div className="row mt-5 mb-5">
-        <div className="col-md-12">
-          <Form
-            name="reparacionterminada"
-            initialValues={{
-              fecha: moment().format("YYYY-MM-DD"),
-              total: 20,
-            }}
-            layout="vertical"
-            form={form}
-            onFinish={onFinish}
-          >
-            <Form.Item
-              label="TOTAL DE LA REPARACION"
-              name="total"
-              rules={[
-                {
-                  required: true,
-                  message:
-                    "Es necesario agregar el total a cobrar de la reparacion",
-                },
-              ]}
+      {reparacion.ReparacionMotivo !== "" ? (
+        <div className="row mt-5 mb-5">
+          <div className="col-md-12">
+            <Form
+              name="reparacionterminada"
+              initialValues={{
+                fecha: moment(reparacion.ReparacionEntrega).format(
+                  "YYYY-MM-DD"
+                ),
+                total: reparacion.ReparacionCostoTotal,
+                motivo: reparacion.ReparacionMotivo,
+              }}
+              layout="vertical"
+              form={form}
+              onFinish={onFinish}
             >
-              <Input type="number" />
-            </Form.Item>
-            <Form.Item
-              label="FECHA DE ENTREGA DE LA MAQUINA"
-              name="fecha"
-              rules={[
-                {
-                  required: true,
-                  message:
-                    "Es necesario agregar el total a cobrar de la reparacion",
-                },
-              ]}
-            >
-              <Input type="date" />
-            </Form.Item>
-            <Space>
-              <Form.Item>
-                <Button type="primary" htmlType="submit">
-                  COMPLETAR REPARACION
-                </Button>
+              <Form.Item
+                label="TOTAL DE LA REPARACION"
+                name="total"
+                rules={[
+                  {
+                    required: true,
+                    message:
+                      "Es necesario agregar el total a cobrar de la reparacion",
+                  },
+                ]}
+              >
+                <Input type="number" />
               </Form.Item>
-              <Form.Item>
-                <Button
-                  onClick={() => handleUpdateDateTotal()}
-                  type="default"
-                  htmlType="button"
-                >
-                  ACTUALIZAR
-                </Button>
+              <Form.Item
+                label="MOTIVO DE LA REPARACION"
+                name="motivo"
+                rules={[
+                  {
+                    required: true,
+                    message: "Es necesario agregar el motivo de la reparacion",
+                  },
+                ]}
+              >
+                <TextArea />
               </Form.Item>
-            </Space>
-          </Form>
+              <Form.Item
+                label="FECHA DE ENTREGA DE LA MAQUINA"
+                name="fecha"
+                rules={[
+                  {
+                    required: true,
+                    message:
+                      "Es necesario agregar la fecha de entrega de la reparacion",
+                  },
+                ]}
+              >
+                <Input type="date" />
+              </Form.Item>
+              <Space>
+                <Form.Item>
+                  <Button type="primary" htmlType="submit">
+                    COMPLETAR REPARACION
+                  </Button>
+                </Form.Item>
+                <Form.Item>
+                  <Button
+                    onClick={() => handleUpdateDateTotal()}
+                    type="default"
+                    htmlType="button"
+                  >
+                    ACTUALIZAR
+                  </Button>
+                </Form.Item>
+              </Space>
+            </Form>
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="row mt-5">
+          <div className="col-md-4 offset-md-4">
+            <Spin />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

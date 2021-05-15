@@ -1,4 +1,5 @@
-import { Form, Input, List, Table } from "antd";
+import { Error } from "@material-ui/icons";
+import { Form, Input, List, message, notification, Table } from "antd";
 import { ColumnsType } from "antd/lib/table";
 import Title from "antd/lib/typography/Title";
 import moment from "moment";
@@ -44,7 +45,9 @@ const ScannerMaquina = () => {
 
   const handleScanMaqForBarCode = async (values: { resultScan: string }) => {
     try {
-      const maquinaDB = await (await conn).query(`
+      const maquinaDB: IDetalleMaquina[] = await (
+        await conn
+      ).query(`
         select
           MaquinaId,
           MaqNombre,
@@ -60,7 +63,9 @@ const ScannerMaquina = () => {
         where MaquinaId = ${values.resultScan};
       `);
 
-      const reparacionesDB: IReparacionesDB[] = await (await conn).query(`
+      const reparacionesDB: IReparacionesDB[] = await (
+        await conn
+      ).query(`
         select 
           ReparacionId,
           ReparacionFecha,
@@ -73,8 +78,31 @@ const ScannerMaquina = () => {
         where ReparacionMaquina = ${values.resultScan};
       `);
 
-      setReparaciones(reparacionesDB);
-      setMaquina(maquinaDB[0]);
+      if (maquinaDB.length > 0) {
+        setReparaciones(reparacionesDB);
+        setMaquina(maquinaDB[0]);
+      } else {
+        notification.open({
+          message: "MAQUINA NO ECONTRADA",
+          description:
+            "ESTA MAQUINA NO EXITE YA SEA POR QUE NO SE A REGISTRADO O ES DE OTRA EMPRESA",
+          icon: <Error />,
+        });
+
+        setMaquina({
+          MaqNombre: "",
+          ClienteNombre: "",
+          ClienteDireccion: "",
+          ClienteEstado: "",
+          ClienteTelefono: "",
+          MaquinaLote: 0,
+          MaquinaId: 0,
+          MaquinaGarantia: new Date(),
+        });
+
+        setReparaciones([]);
+      }
+
       form.resetFields();
     } catch (error) {}
   };
