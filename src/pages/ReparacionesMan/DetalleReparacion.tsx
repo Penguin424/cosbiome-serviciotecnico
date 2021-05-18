@@ -5,7 +5,11 @@ import { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { connection as conn } from "../../lib/DataBase";
 import { remote } from "electron";
+import { PosPrintData, PosPrintOptions } from "electron-pos-printer";
+import { join } from "path";
 import TextArea from "antd/lib/input/TextArea";
+import usePersm from "../../hooks/usePersm";
+const { PosPrinter } = remote.require("electron-pos-printer");
 
 interface IDetalleReparacion {
   [key: string]: any;
@@ -21,6 +25,8 @@ interface IDetalleReparacion {
   ReparacionFecha: Date;
   ReparacionEntrega: Date;
   ReparacionMetodoPago: string;
+  ReparacionCompletada: number;
+  ReparacionDescripcion: string;
 }
 
 const DetalleReparacion = () => {
@@ -37,10 +43,13 @@ const DetalleReparacion = () => {
     ReparacionFecha: new Date(),
     ReparacionEntrega: new Date(),
     ReparacionMetodoPago: "",
+    ReparacionCompletada: 0,
+    ReparacionDescripcion: "",
   });
 
   const params = useParams<{ id: string }>();
   const history = useHistory();
+  const { user } = usePersm();
   const [form] = Form.useForm();
 
   useEffect(() => {
@@ -49,9 +58,7 @@ const DetalleReparacion = () => {
   }, []);
 
   const handleGetReparacion = async () => {
-    const reparacionDB: IDetalleReparacion[] = await (
-      await conn
-    ).query(`
+    const reparacionDB: IDetalleReparacion[] = await (await conn).query(`
       select 
 	      ReparacionId,
 	      ReparacionFecha,
@@ -64,15 +71,15 @@ const DetalleReparacion = () => {
 	      MaquinaId,
 	      MaqNombre,
         ReparacionEntrega,
-        ReparacionMetodoPago
+        ReparacionMetodoPago,
+        ReparacionCompletada,
+        ReparacionDescripcion
       from reparaciones
       inner join clientes on ClienteId = ReparacionCliente
       inner join maquinas on MaquinaId = ReparacionMaquina
       inner join maquinasnombres on MaquinaNombre = MaqId
       where ReparacionId = ${params.id};
     `);
-
-    console.log(reparacionDB[0].ReparacionMotivo);
 
     setReparacion(reparacionDB[0]);
   };
@@ -81,32 +88,145 @@ const DetalleReparacion = () => {
     total: string;
     fecha: string;
     motivo: string;
+    diagnostico: number;
   }) => {
     try {
-      await (
-        await conn
-      ).query(`
+      const options: PosPrintOptions = {
+        preview: false, // Preview in window or print
+        width: "300px", //  width of content body
+        margin: "0 0 0 0", // margin of content body
+        copies: 1, // Number of copies to print
+        printerName: "TM20", // printerName: string, check with webContent.getPrinters()
+        timeOutPerLine: 400,
+        pageSize: { height: 301000, width: 71000 }, // page size
+        silent: true,
+      };
+      await (await conn).query(`
         UPDATE reparaciones
-        SET 
+        SET
           ReparacionCostoTotal = ${parseInt(values.total)},
           ReparacionEntrega = '${moment().format("YY-MM-DD")}',
-          ReparacionMotivo = '${values.motivo}',
-          ReparacionCompletada = true
+          ReparacionDescripcion = '${values.motivo}',
+          ReparacionCompletada = true,
+          ReparacionCostoInicial = ${values.diagnostico}
         WHERE ReparacionId = ${params.id};
       `);
-
-      await (
-        await conn
-      ).query(`
+      await (await conn).query(`
         UPDATE maquinas SET MaquinaReparacion = false
         WHERE MaquinaId = ${reparacion.MaquinaId};
       `);
-
       new remote.Notification({
         title: "REPARACION COMPLETADA",
         body: `REPARACION NO. ${params.id} COMPLETADA`,
       }).show();
-
+      const dataCliente: PosPrintData[] = [
+        {
+          type: "image",
+          path: join(process.cwd(), "src/assets/ticket.png"),
+          width: "190px",
+        },
+        {
+          type: "text",
+          value: "REPARACION",
+          style: `text-align:center;`,
+          css: { "font-weight": "700", "font-size": "18px" },
+        },
+        {
+          type: "text",
+          value: `${moment().format("L")} - ${moment().format("LTS")}`,
+          style: `text-align:center; margin-top: 10px`,
+        },
+        {
+          type: "text",
+          value: `${reparacion.ClienteNombre} - 3335607808`,
+          style: `text-align:center; margin-top: 10px`,
+        },
+        {
+          type: "text",
+          value: `Operador: ${user}`,
+          style: `text-align:center; margin-top: 10px`,
+        },
+        {
+          type: "text",
+          value: `TICKET NO. ${params.id}`,
+          style: `text-align:center; margin-top: 10px`,
+        },
+        {
+          type: "text",
+          value: `MAQUINA EN REAPARACION: ${reparacion.MaqNombre}`,
+          style: `text-align:center; margin-top: 30px`,
+        },
+        {
+          type: "text",
+          value: `DESCRIPCION REPARACION<br/>${values.motivo}`,
+          style: `text-align:center; margin-top: 10px`,
+        },
+        {
+          type: "text",
+          value: `COSTO TOTAL DE REPARACION<br/>${reparacion.ReparacionCostoTotal}$`,
+          style: `text-align:center; margin-top: 10px`,
+        },
+        {
+          type: "text",
+          value: `<u>____________________<u/>`,
+          style: `text-align:center; margin-top: 30px`,
+        },
+        {
+          type: "text",
+          value: `FIRMA DE CLIENTE`,
+          style: `text-align:center;`,
+        },
+      ];
+      const data: PosPrintData[] = [
+        {
+          type: "image",
+          path: join(process.cwd(), "src/assets/ticket.png"),
+          width: "190px",
+        },
+        {
+          type: "text",
+          value: "REPARACION",
+          style: `text-align:center;`,
+          css: { "font-weight": "700", "font-size": "18px" },
+        },
+        {
+          type: "text",
+          value: `${moment().format("L")} - ${moment().format("LTS")}`,
+          style: `text-align:center; margin-top: 10px`,
+        },
+        {
+          type: "text",
+          value: `${reparacion.ClienteNombre} - 3335607808`,
+          style: `text-align:center; margin-top: 10px`,
+        },
+        {
+          type: "text",
+          value: `Operador: ${user}`,
+          style: `text-align:center; margin-top: 10px`,
+        },
+        {
+          type: "text",
+          value: `TICKET NO. ${params.id}`,
+          style: `text-align:center; margin-top: 10px`,
+        },
+        {
+          type: "text",
+          value: `MAQUINA EN REAPARACION: ${reparacion.MaqNombre}`,
+          style: `text-align:center; margin-top: 30px`,
+        },
+        {
+          type: "text",
+          value: `DESCRIPCION REPARACION<br/>${values.motivo}`,
+          style: `text-align:center; margin-top: 10px`,
+        },
+        {
+          type: "text",
+          value: `COSTO TOTAL DE REPARACION<br/>${reparacion.ReparacionCostoTotal}$`,
+          style: `text-align:center; margin-top: 10px`,
+        },
+      ];
+      await PosPrinter.print(data, options);
+      await PosPrinter.print(dataCliente, options);
       form.resetFields();
       history.goBack();
     } catch (error) {
@@ -120,19 +240,23 @@ const DetalleReparacion = () => {
 
   const handleUpdateDateTotal = async () => {
     try {
-      const data: { total: string; fecha: string; motivo: string } =
-        form.getFieldsValue();
+      const data: {
+        total: string;
+        fecha: string;
+        motivo: string;
+        diagnostico: number;
+      } = form.getFieldsValue();
 
-      await (
-        await conn
-      ).query(`
+      await (await conn).query(`
         UPDATE reparaciones
         SET
           ReparacionCostoTotal = ${parseInt(data.total)},
           ReparacionEntrega = '${moment(data.fecha).format("YY-MM-DD")}',
-          ReparacionMotivo = '${data.motivo}'
+          ReparacionDescripcion = '${data.motivo}',
+          ReparacionCostoInicial = ${data.diagnostico}
         WHERE ReparacionId = ${params.id};
       `);
+      handleGetReparacion();
     } catch (error) {
       console.log(error);
     }
@@ -171,74 +295,94 @@ const DetalleReparacion = () => {
       {reparacion.ReparacionMotivo !== "" ? (
         <div className="row mt-5 mb-5">
           <div className="col-md-12">
-            <Form
-              name="reparacionterminada"
-              initialValues={{
-                fecha: moment(reparacion.ReparacionEntrega).format(
-                  "YYYY-MM-DD"
-                ),
-                total: reparacion.ReparacionCostoTotal,
-                motivo: reparacion.ReparacionMotivo,
-              }}
-              layout="vertical"
-              form={form}
-              onFinish={onFinish}
-            >
-              <Form.Item
-                label="TOTAL DE LA REPARACION"
-                name="total"
-                rules={[
-                  {
-                    required: true,
-                    message:
-                      "Es necesario agregar el total a cobrar de la reparacion",
-                  },
-                ]}
+            {reparacion.ReparacionCompletada === 0 && (
+              <Form
+                name="reparacionterminada"
+                initialValues={{
+                  fecha: moment(reparacion.ReparacionEntrega).format(
+                    "YYYY-MM-DD"
+                  ),
+                  total: reparacion.ReparacionCostoTotal,
+                  motivo: reparacion.ReparacionDescripcion,
+                  diagnostico: reparacion.ReparacionCostoInicial,
+                }}
+                layout="vertical"
+                form={form}
+                onFinish={onFinish}
               >
-                <Input type="number" />
-              </Form.Item>
-              <Form.Item
-                label="MOTIVO DE LA REPARACION"
-                name="motivo"
-                rules={[
-                  {
-                    required: true,
-                    message: "Es necesario agregar el motivo de la reparacion",
-                  },
-                ]}
-              >
-                <TextArea />
-              </Form.Item>
-              <Form.Item
-                label="FECHA DE ENTREGA DE LA MAQUINA"
-                name="fecha"
-                rules={[
-                  {
-                    required: true,
-                    message:
-                      "Es necesario agregar la fecha de entrega de la reparacion",
-                  },
-                ]}
-              >
-                <Input type="date" />
-              </Form.Item>
-              <Space>
-                <Form.Item>
-                  <Button type="primary" htmlType="submit">
-                    COMPLETAR REPARACION
-                  </Button>
+                <Form.Item
+                  label="COSTO DE DIAGNOSTICO"
+                  name="diagnostico"
+                  rules={[
+                    {
+                      required: true,
+                      message:
+                        "Es necesario agregar el total a cobrar de la reparacion",
+                    },
+                  ]}
+                >
+                  <Input
+                    disabled={reparacion.ReparacionCostoInicial !== 0}
+                    type="number"
+                  />
                 </Form.Item>
-                <Form.Item>
-                  <Button
-                    onClick={() => handleUpdateDateTotal()}
-                    type="default"
-                    htmlType="button"
-                  >
-                    ACTUALIZAR
-                  </Button>
+                <Form.Item
+                  label="TOTAL DE LA REPARACION"
+                  name="total"
+                  rules={[
+                    {
+                      required: true,
+                      message:
+                        "Es necesario agregar el total a cobrar de la reparacion",
+                    },
+                  ]}
+                >
+                  <Input type="number" />
                 </Form.Item>
-              </Space>
-            </Form>
+                <Form.Item
+                  label="DESCRIPCION DE LA REPARACION"
+                  name="motivo"
+                  rules={[
+                    {
+                      required: true,
+                      message:
+                        "Es necesario agregar el motivo de la reparacion",
+                    },
+                  ]}
+                >
+                  <TextArea />
+                </Form.Item>
+                <Form.Item
+                  label="FECHA DE ENTREGA DE LA MAQUINA"
+                  name="fecha"
+                  rules={[
+                    {
+                      required: true,
+                      message:
+                        "Es necesario agregar la fecha de entrega de la reparacion",
+                    },
+                  ]}
+                >
+                  <Input type="date" />
+                </Form.Item>
+                <Space>
+                  <Form.Item>
+                    <Button type="primary" htmlType="submit">
+                      COMPLETAR REPARACION
+                    </Button>
+                  </Form.Item>
+                  <Form.Item>
+                    <Button
+                      onClick={() => handleUpdateDateTotal()}
+                      type="default"
+                      htmlType="button"
+                    >
+                      ACTUALIZAR
+                    </Button>
+                  </Form.Item>
+                </Space>
+              </Form>
+            )}
           </div>
         </div>
       ) : (

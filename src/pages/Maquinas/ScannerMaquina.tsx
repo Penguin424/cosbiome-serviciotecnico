@@ -1,5 +1,5 @@
 import { Error } from "@material-ui/icons";
-import { Form, Input, List, message, notification, Table } from "antd";
+import { Form, Input, List, notification, Table } from "antd";
 import { ColumnsType } from "antd/lib/table";
 import Title from "antd/lib/typography/Title";
 import moment from "moment";
@@ -26,6 +26,7 @@ interface IReparacionesDB {
   ReparacionMotivo: string;
   ReparacionEntrega: Date;
   ReparacionFecha: Date;
+  ReparacionDescripcion: string;
 }
 
 const ScannerMaquina = () => {
@@ -45,9 +46,7 @@ const ScannerMaquina = () => {
 
   const handleScanMaqForBarCode = async (values: { resultScan: string }) => {
     try {
-      const maquinaDB: IDetalleMaquina[] = await (
-        await conn
-      ).query(`
+      const maquinaDB: IDetalleMaquina[] = await (await conn).query(`
         select
           MaquinaId,
           MaqNombre,
@@ -63,9 +62,7 @@ const ScannerMaquina = () => {
         where MaquinaId = ${values.resultScan};
       `);
 
-      const reparacionesDB: IReparacionesDB[] = await (
-        await conn
-      ).query(`
+      const reparacionesDB: IReparacionesDB[] = await (await conn).query(`
         select 
           ReparacionId,
           ReparacionFecha,
@@ -73,7 +70,8 @@ const ScannerMaquina = () => {
           ReparacionEntrega,
           ReparacionCostoInicial,
           ReparacionCostoTotal,
-          ReparacionCompletada
+          ReparacionCompletada,
+          ReparacionDescripcion
         from reparaciones
         where ReparacionMaquina = ${values.resultScan};
       `);
@@ -115,6 +113,10 @@ const ScannerMaquina = () => {
     {
       title: "MOTIVO",
       dataIndex: "ReparacionMotivo",
+    },
+    {
+      title: "DES REPARACION",
+      dataIndex: "ReparacionDescripcion",
     },
     {
       title: "FECHA DE INGRESO",

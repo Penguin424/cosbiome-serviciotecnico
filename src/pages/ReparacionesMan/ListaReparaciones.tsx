@@ -1,11 +1,10 @@
-import { Button, Space, Table } from "antd";
+import { Table, Tag } from "antd";
 import { ColumnsType } from "antd/lib/table";
 import Title from "antd/lib/typography/Title";
 import moment from "moment";
 import { useEffect, useState } from "react";
 import useFiltersTables from "../../hooks/useFiltersTables";
 import { connection as conn } from "../../lib/DataBase";
-import { useHistory } from "react-router-dom";
 
 interface IReparacionDB {
   ClienteNombre: string;
@@ -15,14 +14,12 @@ interface IReparacionDB {
   ReparacionFecha: Date;
   MaquinaLote: number;
   ReparacionId: number;
-  ReparacionCostoInicial: number;
 }
 
-const Reparaciones = () => {
+const ListaReparaciones = () => {
   const [reparaciones, setReparaciones] = useState<IReparacionDB[]>([]);
 
   const dropMenuFilter = useFiltersTables();
-  const history = useHistory();
 
   useEffect(() => {
     handleGetReparaciones();
@@ -31,19 +28,21 @@ const Reparaciones = () => {
   const handleGetReparaciones = async () => {
     const reparacionesDB: IReparacionDB[] = await (await conn).query(`
       select
-	      ReparacionId,
+	    ReparacionId,
         ReparacionFecha,
         ClienteNombre,
         ReparacionMotivo,
         MaqNombre,
         MaquinaLote,
         ClienteTelefono,
-        ReparacionCostoInicial
+        ReparacionEntrega,
+        ReparacionDescripcion
       from reparaciones
       inner join clientes on ClienteId = ReparacionCliente
       inner join maquinas on MaquinaId = ReparacionMaquina
       inner join maquinasnombres on MaquinaNombre = MaqId
-      where ReparacionCompletada = false;
+      where ReparacionCompletada = false
+      ORDER BY ReparacionEntrega desc;
     `);
 
     setReparaciones(reparacionesDB);
@@ -71,10 +70,6 @@ const Reparaciones = () => {
       dataIndex: "MaqNombre",
     },
     {
-      title: "COSTO DE DIAGNOSTICO",
-      dataIndex: "ReparacionCostoInicial",
-    },
-    {
       title: "FECHA DE INGRESO",
       dataIndex: "ReparacionFecha",
       render: (value: Date, record) => {
@@ -82,31 +77,37 @@ const Reparaciones = () => {
       },
     },
     {
-      title: "LOTE MAQUINA",
-      dataIndex: "MaquinaLote",
+      title: "DES REPARACION",
+      dataIndex: "ReparacionDescripcion",
     },
-
     {
-      title: "Detalle",
-      key: "action",
-      render: (text: any, record) => (
-        <Space size="middle">
-          <Button
-            onClick={() => {
-              history.push(`/reparaciones/detalle/${record.ReparacionId}`);
-            }}
-            type="primary"
-          >
-            DETALLE DE REPARACION
-          </Button>
-        </Space>
-      ),
+      title: "FECHA DE ENTREGA",
+      dataIndex: "ReparacionEntrega",
+      render: (value: Date, record) => {
+        return moment(value).format("L");
+      },
+    },
+    {
+      title: "TIEMPO",
+      key: "ReparacionEntrega",
+      dataIndex: "ReparacionEntrega",
+      render: (value: Date, record) => {
+        let color =
+          moment(value).format("L") < moment().format("L") ? "red" : "green";
+
+        let mensaje =
+          moment(value).format("L") < moment().format("L")
+            ? "RETRASADA"
+            : "A TIEMPO";
+
+        return <Tag color={color}>{mensaje}</Tag>;
+      },
     },
   ];
 
   return (
     <div className="container">
-      <Title className="text-center">REPARACIONES PENDIENTES</Title>
+      <Title className="text-center">REPARACIONES EN COLA</Title>
 
       <div className="row mt-5">
         <div className="col-md-12">
@@ -117,4 +118,4 @@ const Reparaciones = () => {
   );
 };
 
-export default Reparaciones;
+export default ListaReparaciones;

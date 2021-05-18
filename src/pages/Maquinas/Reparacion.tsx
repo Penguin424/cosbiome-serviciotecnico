@@ -63,9 +63,7 @@ const Reparacion = () => {
         silent: true,
       };
 
-      const result = await (
-        await conn
-      ).query(`
+      const result = await (await conn).query(`
         insert into reparaciones (
           ReparacionCliente,
           ReparacionMAquina,
@@ -81,9 +79,7 @@ const Reparacion = () => {
         );
       `);
 
-      await (
-        await conn
-      ).query(`
+      await (await conn).query(`
         UPDATE maquinas SET MaquinaReparacion = true
         WHERE MaquinaId = ${values.maquina};
       `);
@@ -137,7 +133,7 @@ const Reparacion = () => {
         },
         {
           type: "text",
-          value: `COSTO DE REVISION<br/>${values.costoIncial}`,
+          value: `COSTO DE REVISION<br/>${values.costoIncial}$`,
           style: `text-align:center; margin-top: 10px`,
         },
         {
@@ -201,7 +197,7 @@ const Reparacion = () => {
         },
         {
           type: "text",
-          value: `COSTO DE REVISION<br/>${values.costoIncial}`,
+          value: `COSTO DE REVISION<br/>${values.costoIncial}$`,
           style: `text-align:center; margin-top: 10px`,
         },
       ];
@@ -227,9 +223,7 @@ const Reparacion = () => {
   };
 
   const handleGetClientesMaquinas = async () => {
-    const clientesDB: ClienteBasicModel[] = await (
-      await conn
-    ).query(`
+    const clientesDB: ClienteBasicModel[] = await (await conn).query(`
       SELECT
           ClienteId,
           ClienteNombre
@@ -238,9 +232,7 @@ const Reparacion = () => {
       ORDER BY ClienteNombre;
     `);
 
-    const maquinasDB: MaquinaBasicModel[] = await (
-      await conn
-    ).query(`
+    const maquinasDB: MaquinaBasicModel[] = await (await conn).query(`
       select
           MaquinaId,
           MaqNombre,

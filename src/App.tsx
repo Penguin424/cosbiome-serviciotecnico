@@ -1,6 +1,7 @@
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "antd/dist/antd.css";
+import "./assets/css/style.css";
 
 import Login from "./pages/Login";
 import MenuPrincipal from "./pages/MenuPrincipal";
@@ -20,6 +21,8 @@ import DetalleReparacion from "./pages/ReparacionesMan/DetalleReparacion";
 import DetalleMaquina from "./pages/Maquinas/DetalleMaquina";
 import ScannerMaquina from "./pages/Maquinas/ScannerMaquina";
 import MaquinaExterna from "./pages/Maquinas/MaquinaExterna";
+import ListaReparaciones from "./pages/ReparacionesMan/ListaReparaciones";
+import ReporteDiasReparacion from "./pages/reportes/ReporteDiasReparacion";
 
 const App = () => {
   return (
@@ -56,8 +59,18 @@ const App = () => {
           />
           <Route
             exact
+            path="/reparaciones/lista"
+            component={ListaReparaciones}
+          />
+          <Route
+            exact
             path="/reparaciones/detalle/:id"
             component={DetalleReparacion}
+          />
+          <Route
+            exact
+            path="/reportes/reparacionesdias"
+            component={ReporteDiasReparacion}
           />
         </MenuRouterMain>
       </Switch>

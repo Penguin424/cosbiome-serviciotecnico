@@ -6,7 +6,7 @@ const usePersm = () => {
 
   let ad = !(role === "ADMIN");
   let av = !["ADMIN", "VENDEDOR"].includes(role);
-  let ar = !["ADMIN", "Public"].includes(role);
+  let ar = !["ADMIN", "ALMACEN"].includes(role);
 
   return {
     user,
