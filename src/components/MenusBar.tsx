@@ -42,7 +42,6 @@ const MenusBar = ({ setCollapsed, collapsed, online }: any) => {
         <Link to="/menu">INICIO</Link>
       </Menu.Item>
       <Menu.Item
-        hidden={ar}
         style={{ fontSize: 17 }}
         key="2"
         icon={<CropFree style={{ fontSize: 22 }} />}
