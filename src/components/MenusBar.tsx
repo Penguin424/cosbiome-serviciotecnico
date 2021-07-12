@@ -76,7 +76,6 @@ const MenusBar = ({ setCollapsed, collapsed, online }: any) => {
         title="FUNCIONALIDADES"
       >
         <SubMenu
-          disabled={ar}
           key="sub1materia"
           icon={<People style={{ fontSize: 20 }} />}
           style={{ fontSize: 12 }}
@@ -91,6 +90,7 @@ const MenusBar = ({ setCollapsed, collapsed, online }: any) => {
           </Menu.Item>
 
           <Menu.Item
+            hidden={ar}
             style={{ fontSize: 14 }}
             key="sub1materia2"
             icon={<ListAltOutlined style={{ fontSize: 20 }} />}
@@ -167,7 +167,13 @@ const MenusBar = ({ setCollapsed, collapsed, online }: any) => {
             <Link to="/reparaciones/lista">REPARACIONES EN CURSO</Link>
           </Menu.Item>
         </SubMenu>
-
+        {/* <Menu.Item
+          style={{ fontSize: 14 }}
+          key="sub1productos2"
+          icon={<ListAltOutlined style={{ fontSize: 20 }} />}
+        >
+          <Link to="/reparaciones/lista">REPARACIONES EN CURSO</Link>
+        </Menu.Item> */}
         {/* <Menu.Item
           style={{ fontSize: 14 }}
           key="sb13"

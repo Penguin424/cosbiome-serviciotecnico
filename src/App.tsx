@@ -22,7 +22,7 @@ import DetalleMaquina from "./pages/Maquinas/DetalleMaquina";
 import ScannerMaquina from "./pages/Maquinas/ScannerMaquina";
 import MaquinaExterna from "./pages/Maquinas/MaquinaExterna";
 import ListaReparaciones from "./pages/ReparacionesMan/ListaReparaciones";
-import ReporteDiasReparacion from "./pages/reportes/ReporteDiasReparacion";
+import ReporteDiasReparacion from "./pages/Reportes/ReporteDiasReparacion";
 
 const App = () => {
   return (

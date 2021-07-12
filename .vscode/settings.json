@@ -1,18 +1,18 @@
 {
-    "typescript.tsdk": "node_modules\\typescript\\lib",
-    "sqltools.connections": [
-        {
-            "mysqlOptions": {
-                "authProtocol": "default"
-            },
-            "previewLimit": 50,
-            "server": "localhost",
-            "port": 3306,
-            "driver": "MariaDB",
-            "name": "COSBIOME DATA BASES",
-            "database": "cosbiomeserviciotecnico",
-            "username": "root",
-            "password": ""
-        }
-    ]
+  "typescript.tsdk": "./node_modules/typescript/lib",
+  "sqltools.connections": [
+    {
+      "mysqlOptions": {
+        "authProtocol": "default"
+      },
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 3306,
+      "driver": "MariaDB",
+      "name": "COSBIOME DATA BASES",
+      "database": "cosbiomeserviciotecnico",
+      "username": "root",
+      "password": ""
+    }
+  ]
 }
